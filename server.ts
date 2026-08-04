@@ -10,7 +10,7 @@
  * No external setup required — the database file is created on first run.
  */
 
-import { openDatabase, createStores } from "./core/persistence-sqlite";
+import { openDatabase, createStores, createRestaurantStores } from "./core/persistence-sqlite";
 import { createApp } from "./core/http/server";
 import { serve } from "@hono/node-server";
 
@@ -27,7 +27,14 @@ async function main() {
     authorization: stores.authorization,
     auditLog: stores.auditLog,
   };
-  const app = createApp(deps);
+
+  // Inject SQLite stores for verticals that have persistence adapters.
+  // Currently: restaurants (10 components). Other verticals use in-memory.
+  const persistentStores = {
+    ...createRestaurantStores(db),
+  };
+
+  const app = createApp(deps, persistentStores);
 
   console.log(`[server] listening on http://localhost:${PORT}`);
   serve({ fetch: app.fetch, port: PORT });

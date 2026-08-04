@@ -157,7 +157,12 @@ import * as ServiceScheduling from "@business-os/components/service-businesses/s
 // ====================================================================
 const storeRegistry = new Map<string, unknown>();
 
-function getChurchAnnouncementsStore() {
+function getChurchAnnouncementsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-announcements"]) {
+    return persistentStores["church-announcements"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-announcements");
   if (!s) {
     s = new ChurchAnnouncements.InMemoryChurchAnnouncementsStore();
@@ -166,7 +171,12 @@ function getChurchAnnouncementsStore() {
   return s;
 }
 
-function getChurchAttendanceStore() {
+function getChurchAttendanceStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-attendance"]) {
+    return persistentStores["church-attendance"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-attendance");
   if (!s) {
     s = new ChurchAttendance.InMemoryChurchAttendanceStore();
@@ -175,7 +185,12 @@ function getChurchAttendanceStore() {
   return s;
 }
 
-function getChurchDonationsStore() {
+function getChurchDonationsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-donations"]) {
+    return persistentStores["church-donations"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-donations");
   if (!s) {
     s = new ChurchDonations.InMemoryChurchDonationsStore();
@@ -184,7 +199,12 @@ function getChurchDonationsStore() {
   return s;
 }
 
-function getChurchEventsStore() {
+function getChurchEventsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-events"]) {
+    return persistentStores["church-events"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-events");
   if (!s) {
     s = new ChurchEvents.InMemoryChurchEventsStore();
@@ -193,7 +213,12 @@ function getChurchEventsStore() {
   return s;
 }
 
-function getChurchGroupsStore() {
+function getChurchGroupsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-groups"]) {
+    return persistentStores["church-groups"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-groups");
   if (!s) {
     s = new ChurchGroups.InMemoryChurchGroupsStore();
@@ -202,7 +227,12 @@ function getChurchGroupsStore() {
   return s;
 }
 
-function getChurchMemberManagementStore() {
+function getChurchMemberManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-member-management"]) {
+    return persistentStores["church-member-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-member-management");
   if (!s) {
     s = new ChurchMemberManagement.InMemoryChurchMemberManagementStore();
@@ -211,7 +241,12 @@ function getChurchMemberManagementStore() {
   return s;
 }
 
-function getChurchSermonsStore() {
+function getChurchSermonsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-sermons"]) {
+    return persistentStores["church-sermons"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-sermons");
   if (!s) {
     s = new ChurchSermons.InMemoryChurchSermonsStore();
@@ -220,7 +255,12 @@ function getChurchSermonsStore() {
   return s;
 }
 
-function getChurchVolunteersStore() {
+function getChurchVolunteersStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["church-volunteers"]) {
+    return persistentStores["church-volunteers"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("church-volunteers");
   if (!s) {
     s = new ChurchVolunteers.InMemoryChurchVolunteersStore();
@@ -229,7 +269,12 @@ function getChurchVolunteersStore() {
   return s;
 }
 
-function getClinicAppointmentsStore() {
+function getClinicAppointmentsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-appointments"]) {
+    return persistentStores["clinic-appointments"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-appointments");
   if (!s) {
     s = new ClinicAppointments.InMemoryClinicAppointmentsStore();
@@ -238,7 +283,12 @@ function getClinicAppointmentsStore() {
   return s;
 }
 
-function getClinicBillingStore() {
+function getClinicBillingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-billing"]) {
+    return persistentStores["clinic-billing"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-billing");
   if (!s) {
     s = new ClinicBilling.InMemoryClinicBillingStore();
@@ -247,7 +297,12 @@ function getClinicBillingStore() {
   return s;
 }
 
-function getClinicConsentStore() {
+function getClinicConsentStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-consent"]) {
+    return persistentStores["clinic-consent"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-consent");
   if (!s) {
     s = new ClinicConsent.InMemoryClinicConsentStore();
@@ -256,7 +311,12 @@ function getClinicConsentStore() {
   return s;
 }
 
-function getClinicLabOrdersStore() {
+function getClinicLabOrdersStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-lab-orders"]) {
+    return persistentStores["clinic-lab-orders"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-lab-orders");
   if (!s) {
     s = new ClinicLabOrders.InMemoryClinicLabOrdersStore();
@@ -265,7 +325,12 @@ function getClinicLabOrdersStore() {
   return s;
 }
 
-function getClinicMedicalRecordsStore() {
+function getClinicMedicalRecordsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-medical-records"]) {
+    return persistentStores["clinic-medical-records"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-medical-records");
   if (!s) {
     s = new ClinicMedicalRecords.InMemoryClinicMedicalRecordsStore();
@@ -274,7 +339,12 @@ function getClinicMedicalRecordsStore() {
   return s;
 }
 
-function getClinicPatientManagementStore() {
+function getClinicPatientManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-patient-management"]) {
+    return persistentStores["clinic-patient-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-patient-management");
   if (!s) {
     s = new ClinicPatientManagement.InMemoryClinicPatientManagementStore();
@@ -283,7 +353,12 @@ function getClinicPatientManagementStore() {
   return s;
 }
 
-function getClinicPrescriptionsStore() {
+function getClinicPrescriptionsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-prescriptions"]) {
+    return persistentStores["clinic-prescriptions"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-prescriptions");
   if (!s) {
     s = new ClinicPrescriptions.InMemoryClinicPrescriptionsStore();
@@ -292,7 +367,12 @@ function getClinicPrescriptionsStore() {
   return s;
 }
 
-function getClinicRemindersStore() {
+function getClinicRemindersStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-reminders"]) {
+    return persistentStores["clinic-reminders"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-reminders");
   if (!s) {
     s = new ClinicReminders.InMemoryClinicRemindersStore();
@@ -301,7 +381,12 @@ function getClinicRemindersStore() {
   return s;
 }
 
-function getClinicStaffManagementStore() {
+function getClinicStaffManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-staff-management"]) {
+    return persistentStores["clinic-staff-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-staff-management");
   if (!s) {
     s = new ClinicStaffManagement.InMemoryClinicStaffManagementStore();
@@ -310,7 +395,12 @@ function getClinicStaffManagementStore() {
   return s;
 }
 
-function getClinicTriageStore() {
+function getClinicTriageStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["clinic-triage"]) {
+    return persistentStores["clinic-triage"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("clinic-triage");
   if (!s) {
     s = new ClinicTriage.InMemoryClinicTriageStore();
@@ -319,7 +409,12 @@ function getClinicTriageStore() {
   return s;
 }
 
-function getActivityTimelineStore() {
+function getActivityTimelineStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["activity-timeline"]) {
+    return persistentStores["activity-timeline"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("activity-timeline");
   if (!s) {
     s = new ActivityTimeline.InMemoryActivityTimelineStore();
@@ -328,7 +423,12 @@ function getActivityTimelineStore() {
   return s;
 }
 
-function getDocumentManagementStore() {
+function getDocumentManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["document-management"]) {
+    return persistentStores["document-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("document-management");
   if (!s) {
     s = new DocumentManagement.InMemoryDocumentManagementStore();
@@ -337,7 +437,12 @@ function getDocumentManagementStore() {
   return s;
 }
 
-function getFormsAndIntakeStore() {
+function getFormsAndIntakeStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["forms-and-intake"]) {
+    return persistentStores["forms-and-intake"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("forms-and-intake");
   if (!s) {
     s = new FormsAndIntake.InMemoryFormsAndIntakeStore();
@@ -346,7 +451,12 @@ function getFormsAndIntakeStore() {
   return s;
 }
 
-function getMessagingCenterStore() {
+function getMessagingCenterStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["messaging-center"]) {
+    return persistentStores["messaging-center"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("messaging-center");
   if (!s) {
     s = new MessagingCenter.InMemoryMessagingCenterStore();
@@ -355,7 +465,12 @@ function getMessagingCenterStore() {
   return s;
 }
 
-function getNotesAndCommentsStore() {
+function getNotesAndCommentsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["notes-and-comments"]) {
+    return persistentStores["notes-and-comments"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("notes-and-comments");
   if (!s) {
     s = new NotesAndComments.InMemoryNotesAndCommentsStore();
@@ -364,7 +479,12 @@ function getNotesAndCommentsStore() {
   return s;
 }
 
-function getNotificationsCenterStore() {
+function getNotificationsCenterStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["notifications-center"]) {
+    return persistentStores["notifications-center"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("notifications-center");
   if (!s) {
     s = new NotificationsCenter.InMemoryNotificationsCenterStore();
@@ -373,7 +493,12 @@ function getNotificationsCenterStore() {
   return s;
 }
 
-function getPaymentsOrCollectionsStore() {
+function getPaymentsOrCollectionsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["payments-or-collections"]) {
+    return persistentStores["payments-or-collections"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("payments-or-collections");
   if (!s) {
     s = new PaymentsOrCollections.InMemoryPaymentsOrCollectionsStore();
@@ -382,7 +507,12 @@ function getPaymentsOrCollectionsStore() {
   return s;
 }
 
-function getReportingDashboardStore() {
+function getReportingDashboardStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["reporting-dashboard"]) {
+    return persistentStores["reporting-dashboard"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("reporting-dashboard");
   if (!s) {
     s = new ReportingDashboard.InMemoryReportingDashboardStore();
@@ -391,7 +521,12 @@ function getReportingDashboardStore() {
   return s;
 }
 
-function getRolesAndPermissionsUiStore() {
+function getRolesAndPermissionsUiStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["roles-and-permissions-ui"]) {
+    return persistentStores["roles-and-permissions-ui"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("roles-and-permissions-ui");
   if (!s) {
     s = new RolesAndPermissionsUi.InMemoryRolesAndPermissionsUiStore();
@@ -400,7 +535,12 @@ function getRolesAndPermissionsUiStore() {
   return s;
 }
 
-function getSearchAndFilterStore() {
+function getSearchAndFilterStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["search-and-filter"]) {
+    return persistentStores["search-and-filter"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("search-and-filter");
   if (!s) {
     s = new SearchAndFilter.InMemorySearchAndFilterStore();
@@ -409,7 +549,12 @@ function getSearchAndFilterStore() {
   return s;
 }
 
-function getRestaurantBillingStore() {
+function getRestaurantBillingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-billing"]) {
+    return persistentStores["restaurant-billing"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-billing");
   if (!s) {
     s = new RestaurantBilling.InMemoryRestaurantBillingStore();
@@ -418,7 +563,12 @@ function getRestaurantBillingStore() {
   return s;
 }
 
-function getRestaurantDeliveryManagementStore() {
+function getRestaurantDeliveryManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-delivery-management"]) {
+    return persistentStores["restaurant-delivery-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-delivery-management");
   if (!s) {
     s = new RestaurantDeliveryManagement.InMemoryRestaurantDeliveryManagementStore();
@@ -427,7 +577,12 @@ function getRestaurantDeliveryManagementStore() {
   return s;
 }
 
-function getRestaurantIngredientTrackingStore() {
+function getRestaurantIngredientTrackingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-ingredient-tracking"]) {
+    return persistentStores["restaurant-ingredient-tracking"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-ingredient-tracking");
   if (!s) {
     s = new RestaurantIngredientTracking.InMemoryRestaurantIngredientTrackingStore();
@@ -436,7 +591,12 @@ function getRestaurantIngredientTrackingStore() {
   return s;
 }
 
-function getRestaurantKitchenDisplayStore() {
+function getRestaurantKitchenDisplayStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-kitchen-display"]) {
+    return persistentStores["restaurant-kitchen-display"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-kitchen-display");
   if (!s) {
     s = new RestaurantKitchenDisplay.InMemoryRestaurantKitchenDisplayStore();
@@ -445,7 +605,12 @@ function getRestaurantKitchenDisplayStore() {
   return s;
 }
 
-function getRestaurantMenuStore() {
+function getRestaurantMenuStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-menu"]) {
+    return persistentStores["restaurant-menu"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-menu");
   if (!s) {
     s = new RestaurantMenu.InMemoryRestaurantMenuStore();
@@ -454,7 +619,12 @@ function getRestaurantMenuStore() {
   return s;
 }
 
-function getRestaurantOrderManagementStore() {
+function getRestaurantOrderManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-order-management"]) {
+    return persistentStores["restaurant-order-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-order-management");
   if (!s) {
     s = new RestaurantOrderManagement.InMemoryRestaurantOrderManagementStore();
@@ -463,7 +633,12 @@ function getRestaurantOrderManagementStore() {
   return s;
 }
 
-function getRestaurantPromotionsStore() {
+function getRestaurantPromotionsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-promotions"]) {
+    return persistentStores["restaurant-promotions"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-promotions");
   if (!s) {
     s = new RestaurantPromotions.InMemoryRestaurantPromotionsStore();
@@ -472,7 +647,12 @@ function getRestaurantPromotionsStore() {
   return s;
 }
 
-function getRestaurantReservationsStore() {
+function getRestaurantReservationsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-reservations"]) {
+    return persistentStores["restaurant-reservations"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-reservations");
   if (!s) {
     s = new RestaurantReservations.InMemoryRestaurantReservationsStore();
@@ -481,7 +661,12 @@ function getRestaurantReservationsStore() {
   return s;
 }
 
-function getRestaurantShiftManagementStore() {
+function getRestaurantShiftManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-shift-management"]) {
+    return persistentStores["restaurant-shift-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-shift-management");
   if (!s) {
     s = new RestaurantShiftManagement.InMemoryRestaurantShiftManagementStore();
@@ -490,7 +675,12 @@ function getRestaurantShiftManagementStore() {
   return s;
 }
 
-function getRestaurantTableManagementStore() {
+function getRestaurantTableManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["restaurant-table-management"]) {
+    return persistentStores["restaurant-table-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("restaurant-table-management");
   if (!s) {
     s = new RestaurantTableManagement.InMemoryRestaurantTableManagementStore();
@@ -499,7 +689,12 @@ function getRestaurantTableManagementStore() {
   return s;
 }
 
-function getRetailBarcodeScanningStore() {
+function getRetailBarcodeScanningStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-barcode-scanning"]) {
+    return persistentStores["retail-barcode-scanning"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-barcode-scanning");
   if (!s) {
     s = new RetailBarcodeScanning.InMemoryRetailBarcodeScanningStore();
@@ -508,7 +703,12 @@ function getRetailBarcodeScanningStore() {
   return s;
 }
 
-function getRetailCustomerManagementStore() {
+function getRetailCustomerManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-customer-management"]) {
+    return persistentStores["retail-customer-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-customer-management");
   if (!s) {
     s = new RetailCustomerManagement.InMemoryRetailCustomerManagementStore();
@@ -517,7 +717,12 @@ function getRetailCustomerManagementStore() {
   return s;
 }
 
-function getRetailInventoryStore() {
+function getRetailInventoryStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-inventory"]) {
+    return persistentStores["retail-inventory"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-inventory");
   if (!s) {
     s = new RetailInventory.InMemoryRetailInventoryStore();
@@ -526,7 +731,12 @@ function getRetailInventoryStore() {
   return s;
 }
 
-function getRetailPointOfSaleStore() {
+function getRetailPointOfSaleStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-point-of-sale"]) {
+    return persistentStores["retail-point-of-sale"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-point-of-sale");
   if (!s) {
     s = new RetailPointOfSale.InMemoryRetailPointOfSaleStore();
@@ -535,7 +745,12 @@ function getRetailPointOfSaleStore() {
   return s;
 }
 
-function getRetailProductCatalogStore() {
+function getRetailProductCatalogStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-product-catalog"]) {
+    return persistentStores["retail-product-catalog"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-product-catalog");
   if (!s) {
     s = new RetailProductCatalog.InMemoryRetailProductCatalogStore();
@@ -544,7 +759,12 @@ function getRetailProductCatalogStore() {
   return s;
 }
 
-function getRetailPromotionsStore() {
+function getRetailPromotionsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-promotions"]) {
+    return persistentStores["retail-promotions"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-promotions");
   if (!s) {
     s = new RetailPromotions.InMemoryRetailPromotionsStore();
@@ -553,7 +773,12 @@ function getRetailPromotionsStore() {
   return s;
 }
 
-function getRetailSalesReportsStore() {
+function getRetailSalesReportsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-sales-reports"]) {
+    return persistentStores["retail-sales-reports"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-sales-reports");
   if (!s) {
     s = new RetailSalesReports.InMemoryRetailSalesReportsStore();
@@ -562,7 +787,12 @@ function getRetailSalesReportsStore() {
   return s;
 }
 
-function getRetailStockAlertsStore() {
+function getRetailStockAlertsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-stock-alerts"]) {
+    return persistentStores["retail-stock-alerts"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-stock-alerts");
   if (!s) {
     s = new RetailStockAlerts.InMemoryRetailStockAlertsStore();
@@ -571,7 +801,12 @@ function getRetailStockAlertsStore() {
   return s;
 }
 
-function getRetailSupplierManagementStore() {
+function getRetailSupplierManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["retail-supplier-management"]) {
+    return persistentStores["retail-supplier-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("retail-supplier-management");
   if (!s) {
     s = new RetailSupplierManagement.InMemoryRetailSupplierManagementStore();
@@ -580,7 +815,12 @@ function getRetailSupplierManagementStore() {
   return s;
 }
 
-function getSchoolAttendanceStore() {
+function getSchoolAttendanceStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-attendance"]) {
+    return persistentStores["school-attendance"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-attendance");
   if (!s) {
     s = new SchoolAttendance.InMemorySchoolAttendanceStore();
@@ -589,7 +829,12 @@ function getSchoolAttendanceStore() {
   return s;
 }
 
-function getSchoolCertificatesStore() {
+function getSchoolCertificatesStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-certificates"]) {
+    return persistentStores["school-certificates"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-certificates");
   if (!s) {
     s = new SchoolCertificates.InMemorySchoolCertificatesStore();
@@ -598,7 +843,12 @@ function getSchoolCertificatesStore() {
   return s;
 }
 
-function getSchoolClassSchedulingStore() {
+function getSchoolClassSchedulingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-class-scheduling"]) {
+    return persistentStores["school-class-scheduling"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-class-scheduling");
   if (!s) {
     s = new SchoolClassScheduling.InMemorySchoolClassSchedulingStore();
@@ -607,7 +857,12 @@ function getSchoolClassSchedulingStore() {
   return s;
 }
 
-function getSchoolExamsStore() {
+function getSchoolExamsStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-exams"]) {
+    return persistentStores["school-exams"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-exams");
   if (!s) {
     s = new SchoolExams.InMemorySchoolExamsStore();
@@ -616,7 +871,12 @@ function getSchoolExamsStore() {
   return s;
 }
 
-function getSchoolGradingStore() {
+function getSchoolGradingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-grading"]) {
+    return persistentStores["school-grading"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-grading");
   if (!s) {
     s = new SchoolGrading.InMemorySchoolGradingStore();
@@ -625,7 +885,12 @@ function getSchoolGradingStore() {
   return s;
 }
 
-function getSchoolParentCommunicationStore() {
+function getSchoolParentCommunicationStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-parent-communication"]) {
+    return persistentStores["school-parent-communication"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-parent-communication");
   if (!s) {
     s = new SchoolParentCommunication.InMemorySchoolParentCommunicationStore();
@@ -634,7 +899,12 @@ function getSchoolParentCommunicationStore() {
   return s;
 }
 
-function getSchoolStudentEnrollmentStore() {
+function getSchoolStudentEnrollmentStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-student-enrollment"]) {
+    return persistentStores["school-student-enrollment"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-student-enrollment");
   if (!s) {
     s = new SchoolStudentEnrollment.InMemorySchoolStudentEnrollmentStore();
@@ -643,7 +913,12 @@ function getSchoolStudentEnrollmentStore() {
   return s;
 }
 
-function getSchoolStudentPortalStore() {
+function getSchoolStudentPortalStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-student-portal"]) {
+    return persistentStores["school-student-portal"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-student-portal");
   if (!s) {
     s = new SchoolStudentPortal.InMemorySchoolStudentPortalStore();
@@ -652,7 +927,12 @@ function getSchoolStudentPortalStore() {
   return s;
 }
 
-function getSchoolTeacherManagementStore() {
+function getSchoolTeacherManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-teacher-management"]) {
+    return persistentStores["school-teacher-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-teacher-management");
   if (!s) {
     s = new SchoolTeacherManagement.InMemorySchoolTeacherManagementStore();
@@ -661,7 +941,12 @@ function getSchoolTeacherManagementStore() {
   return s;
 }
 
-function getSchoolTuitionManagementStore() {
+function getSchoolTuitionManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["school-tuition-management"]) {
+    return persistentStores["school-tuition-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("school-tuition-management");
   if (!s) {
     s = new SchoolTuitionManagement.InMemorySchoolTuitionManagementStore();
@@ -670,7 +955,12 @@ function getSchoolTuitionManagementStore() {
   return s;
 }
 
-function getServiceBookingStore() {
+function getServiceBookingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-booking"]) {
+    return persistentStores["service-booking"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-booking");
   if (!s) {
     s = new ServiceBooking.InMemoryServiceBookingStore();
@@ -679,7 +969,12 @@ function getServiceBookingStore() {
   return s;
 }
 
-function getServiceCatalogStore() {
+function getServiceCatalogStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-catalog"]) {
+    return persistentStores["service-catalog"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-catalog");
   if (!s) {
     s = new ServiceCatalog.InMemoryServiceCatalogStore();
@@ -688,7 +983,12 @@ function getServiceCatalogStore() {
   return s;
 }
 
-function getServiceCustomerManagementStore() {
+function getServiceCustomerManagementStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-customer-management"]) {
+    return persistentStores["service-customer-management"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-customer-management");
   if (!s) {
     s = new ServiceCustomerManagement.InMemoryServiceCustomerManagementStore();
@@ -697,7 +997,12 @@ function getServiceCustomerManagementStore() {
   return s;
 }
 
-function getServiceFeedbackStore() {
+function getServiceFeedbackStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-feedback"]) {
+    return persistentStores["service-feedback"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-feedback");
   if (!s) {
     s = new ServiceFeedback.InMemoryServiceFeedbackStore();
@@ -706,7 +1011,12 @@ function getServiceFeedbackStore() {
   return s;
 }
 
-function getServiceInvoicingStore() {
+function getServiceInvoicingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-invoicing"]) {
+    return persistentStores["service-invoicing"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-invoicing");
   if (!s) {
     s = new ServiceInvoicing.InMemoryServiceInvoicingStore();
@@ -715,7 +1025,12 @@ function getServiceInvoicingStore() {
   return s;
 }
 
-function getServiceJobTrackingStore() {
+function getServiceJobTrackingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-job-tracking"]) {
+    return persistentStores["service-job-tracking"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-job-tracking");
   if (!s) {
     s = new ServiceJobTracking.InMemoryServiceJobTrackingStore();
@@ -724,7 +1039,12 @@ function getServiceJobTrackingStore() {
   return s;
 }
 
-function getServiceQuotesStore() {
+function getServiceQuotesStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-quotes"]) {
+    return persistentStores["service-quotes"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-quotes");
   if (!s) {
     s = new ServiceQuotes.InMemoryServiceQuotesStore();
@@ -733,7 +1053,12 @@ function getServiceQuotesStore() {
   return s;
 }
 
-function getServiceSchedulingStore() {
+function getServiceSchedulingStore(persistentStores?: Record<string, unknown>) {
+  // If a persistent store was injected for this component, use it.
+  if (persistentStores && persistentStores["service-scheduling"]) {
+    return persistentStores["service-scheduling"];
+  }
+  // Otherwise, lazily create the in-memory store.
   let s = storeRegistry.get("service-scheduling");
   if (!s) {
     s = new ServiceScheduling.InMemoryServiceSchedulingStore();
@@ -755,7 +1080,11 @@ export function registerAllComponentRoutes(
     getJsonBody: (c: any) => Promise<any>;
     resultResponse: (r: any) => Response;
     errorResponse: (e: { code: string; message: string }, status?: number) => Response;
-  }
+  },
+  // Optional: a map of component-id → persistent store. If a store is
+  // provided for a component, it replaces the in-memory default. Used
+  // to inject SQLite stores for verticals that have persistence adapters.
+  persistentStores?: Record<string, unknown>
 ) {
   const auditSink = new PersistentAuditSink(deps.auditLog);
   const checker = new StorePermissionChecker(deps.authorization);
@@ -767,7 +1096,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.announcements.publish");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchAnnouncementsStore() as any;
+    const store = getChurchAnnouncementsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchAnnouncements.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -781,7 +1110,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.announcements.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchAnnouncementsStore() as any;
+    const store = getChurchAnnouncementsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchAnnouncements.defaultConfig } as any;
     const query = c.req.query();
     const result = (ChurchAnnouncements.listActiveAnnouncements as any)(ctx, componentDeps, query);
@@ -796,7 +1125,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.attendance.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchAttendanceStore() as any;
+    const store = getChurchAttendanceStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchAttendance.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -810,7 +1139,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.attendance.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchAttendanceStore() as any;
+    const store = getChurchAttendanceStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchAttendance.defaultConfig } as any;
     const query = c.req.query();
     const result = (ChurchAttendance.isDeclining as any)(ctx, componentDeps, query);
@@ -825,7 +1154,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.donations.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchDonationsStore() as any;
+    const store = getChurchDonationsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchDonations.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -839,7 +1168,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.donations.read_member_history");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchDonationsStore() as any;
+    const store = getChurchDonationsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchDonations.defaultConfig } as any;
     const query = c.req.query();
     const result = (ChurchDonations.computeMemberGivingTotal as any)(ctx, componentDeps, query);
@@ -854,7 +1183,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.events.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchEventsStore() as any;
+    const store = getChurchEventsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchEvents.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -868,7 +1197,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.events.register");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchEventsStore() as any;
+    const store = getChurchEventsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchEvents.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -884,7 +1213,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.groups.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchGroupsStore() as any;
+    const store = getChurchGroupsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchGroups.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -898,7 +1227,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.groups.join");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchGroupsStore() as any;
+    const store = getChurchGroupsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchGroups.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -914,7 +1243,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.members.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchMemberManagementStore() as any;
+    const store = getChurchMemberManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchMemberManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -928,7 +1257,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.members.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchMemberManagementStore() as any;
+    const store = getChurchMemberManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchMemberManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (ChurchMemberManagement.listVisibleMembers as any)(ctx, componentDeps, query);
@@ -941,7 +1270,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.members.update_own");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchMemberManagementStore() as any;
+    const store = getChurchMemberManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchMemberManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -957,7 +1286,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.sermons.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchSermonsStore() as any;
+    const store = getChurchSermonsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchSermons.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -971,7 +1300,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.sermons.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchSermonsStore() as any;
+    const store = getChurchSermonsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchSermons.defaultConfig } as any;
     const query = c.req.query();
     const result = (ChurchSermons.listSermonsBySpeaker as any)(ctx, componentDeps, query);
@@ -986,7 +1315,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.volunteers.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchVolunteersStore() as any;
+    const store = getChurchVolunteersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchVolunteers.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1000,7 +1329,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "church.volunteers.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getChurchVolunteersStore() as any;
+    const store = getChurchVolunteersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ChurchVolunteers.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1016,7 +1345,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.appointments.schedule");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicAppointmentsStore() as any;
+    const store = getClinicAppointmentsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicAppointments.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1030,7 +1359,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.appointments.cancel");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicAppointmentsStore() as any;
+    const store = getClinicAppointmentsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicAppointments.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (ClinicAppointments.cancelAppointment as any)(ctx, componentDeps, input);
@@ -1045,7 +1374,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.billing.generate");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicBillingStore() as any;
+    const store = getClinicBillingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicBilling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1059,7 +1388,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.billing.record_payment");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicBillingStore() as any;
+    const store = getClinicBillingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicBilling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1075,7 +1404,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.consent.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicConsentStore() as any;
+    const store = getClinicConsentStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicConsent.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1089,7 +1418,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.consent.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicConsentStore() as any;
+    const store = getClinicConsentStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicConsent.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (ClinicConsent.revokeConsent as any)(ctx, componentDeps, input);
@@ -1102,7 +1431,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.consent.check");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicConsentStore() as any;
+    const store = getClinicConsentStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicConsent.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1118,7 +1447,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.lab.order");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicLabOrdersStore() as any;
+    const store = getClinicLabOrdersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicLabOrders.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1132,7 +1461,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.lab.record_result");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicLabOrdersStore() as any;
+    const store = getClinicLabOrdersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicLabOrders.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1148,7 +1477,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.records.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicMedicalRecordsStore() as any;
+    const store = getClinicMedicalRecordsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicMedicalRecords.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1162,7 +1491,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.records.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicMedicalRecordsStore() as any;
+    const store = getClinicMedicalRecordsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicMedicalRecords.defaultConfig } as any;
     const query = c.req.query();
     const result = (ClinicMedicalRecords.listRecordsForPatient as any)(ctx, componentDeps, query);
@@ -1177,7 +1506,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.patients.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicPatientManagementStore() as any;
+    const store = getClinicPatientManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicPatientManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1191,7 +1520,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.patients.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicPatientManagementStore() as any;
+    const store = getClinicPatientManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicPatientManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (ClinicPatientManagement.getPatient as any)(ctx, componentDeps, query);
@@ -1206,7 +1535,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.prescriptions.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicPrescriptionsStore() as any;
+    const store = getClinicPrescriptionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicPrescriptions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1220,7 +1549,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.prescriptions.refill");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicPrescriptionsStore() as any;
+    const store = getClinicPrescriptionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicPrescriptions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1236,7 +1565,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.reminders.schedule");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicRemindersStore() as any;
+    const store = getClinicRemindersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicReminders.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1250,7 +1579,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.reminders.cancel");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicRemindersStore() as any;
+    const store = getClinicRemindersStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicReminders.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (ClinicReminders.cancelReminder as any)(ctx, componentDeps, input);
@@ -1265,7 +1594,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.staff.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicStaffManagementStore() as any;
+    const store = getClinicStaffManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicStaffManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1279,7 +1608,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.staff.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicStaffManagementStore() as any;
+    const store = getClinicStaffManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicStaffManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (ClinicStaffManagement.listDoctors as any)(ctx, componentDeps, query);
@@ -1294,7 +1623,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.triage.intake");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicTriageStore() as any;
+    const store = getClinicTriageStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicTriage.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1308,7 +1637,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "clinic.triage.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getClinicTriageStore() as any;
+    const store = getClinicTriageStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ClinicTriage.defaultConfig } as any;
     const query = c.req.query();
     const result = (ClinicTriage.listEmergencyTriage as any)(ctx, componentDeps, query);
@@ -1323,7 +1652,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "timeline.events.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getActivityTimelineStore() as any;
+    const store = getActivityTimelineStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ActivityTimeline.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1337,7 +1666,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "timeline.events.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getActivityTimelineStore() as any;
+    const store = getActivityTimelineStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ActivityTimeline.defaultConfig } as any;
     const query = c.req.query();
     const result = (ActivityTimeline.listEventsForEntity as any)(ctx, componentDeps, query);
@@ -1352,7 +1681,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "documents.upload");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getDocumentManagementStore() as any;
+    const store = getDocumentManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: DocumentManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1366,7 +1695,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "documents.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getDocumentManagementStore() as any;
+    const store = getDocumentManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: DocumentManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (DocumentManagement.listDocumentsForEntity as any)(ctx, componentDeps, query);
@@ -1379,7 +1708,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "documents.delete");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getDocumentManagementStore() as any;
+    const store = getDocumentManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: DocumentManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1395,7 +1724,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "forms.define");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getFormsAndIntakeStore() as any;
+    const store = getFormsAndIntakeStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: FormsAndIntake.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1409,7 +1738,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "forms.publish");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getFormsAndIntakeStore() as any;
+    const store = getFormsAndIntakeStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: FormsAndIntake.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1423,7 +1752,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "forms.submit");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getFormsAndIntakeStore() as any;
+    const store = getFormsAndIntakeStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: FormsAndIntake.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1439,7 +1768,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "messaging.messages.send");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getMessagingCenterStore() as any;
+    const store = getMessagingCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: MessagingCenter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1453,7 +1782,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "messaging.messages.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getMessagingCenterStore() as any;
+    const store = getMessagingCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: MessagingCenter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1467,7 +1796,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "messaging.messages.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getMessagingCenterStore() as any;
+    const store = getMessagingCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: MessagingCenter.defaultConfig } as any;
     const query = c.req.query();
     const result = (MessagingCenter.listMessages as any)(ctx, componentDeps, query);
@@ -1482,7 +1811,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notes.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotesAndCommentsStore() as any;
+    const store = getNotesAndCommentsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotesAndComments.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1496,7 +1825,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notes.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotesAndCommentsStore() as any;
+    const store = getNotesAndCommentsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotesAndComments.defaultConfig } as any;
     const query = c.req.query();
     const result = (NotesAndComments.listNotesForEntity as any)(ctx, componentDeps, query);
@@ -1509,7 +1838,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notes.delete");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotesAndCommentsStore() as any;
+    const store = getNotesAndCommentsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotesAndComments.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (NotesAndComments.deleteNote as any)(ctx, componentDeps, input);
@@ -1524,7 +1853,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notifications.push");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotificationsCenterStore() as any;
+    const store = getNotificationsCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotificationsCenter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1538,7 +1867,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notifications.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotificationsCenterStore() as any;
+    const store = getNotificationsCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotificationsCenter.defaultConfig } as any;
     const query = c.req.query();
     const result = (NotificationsCenter.listUnreadForCurrentUser as any)(ctx, componentDeps, query);
@@ -1551,7 +1880,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "notifications.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getNotificationsCenterStore() as any;
+    const store = getNotificationsCenterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: NotificationsCenter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1567,7 +1896,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "payments.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getPaymentsOrCollectionsStore() as any;
+    const store = getPaymentsOrCollectionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: PaymentsOrCollections.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1581,7 +1910,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "payments.refund");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getPaymentsOrCollectionsStore() as any;
+    const store = getPaymentsOrCollectionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: PaymentsOrCollections.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1595,7 +1924,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "payments.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getPaymentsOrCollectionsStore() as any;
+    const store = getPaymentsOrCollectionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: PaymentsOrCollections.defaultConfig } as any;
     const query = c.req.query();
     const result = (PaymentsOrCollections.listPaymentsForInvoice as any)(ctx, componentDeps, query);
@@ -1610,7 +1939,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "reporting.metrics.define");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getReportingDashboardStore() as any;
+    const store = getReportingDashboardStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ReportingDashboard.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1624,7 +1953,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "reporting.metrics.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getReportingDashboardStore() as any;
+    const store = getReportingDashboardStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ReportingDashboard.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1638,7 +1967,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "reporting.metrics.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getReportingDashboardStore() as any;
+    const store = getReportingDashboardStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ReportingDashboard.defaultConfig } as any;
     const query = c.req.query();
     const result = (ReportingDashboard.getMetricSeries as any)(ctx, componentDeps, query);
@@ -1653,7 +1982,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "roles.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRolesAndPermissionsUiStore() as any;
+    const store = getRolesAndPermissionsUiStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RolesAndPermissionsUi.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1667,7 +1996,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "roles.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRolesAndPermissionsUiStore() as any;
+    const store = getRolesAndPermissionsUiStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RolesAndPermissionsUi.defaultConfig } as any;
     const query = c.req.query();
     const result = (RolesAndPermissionsUi.listRoles as any)(ctx, componentDeps, query);
@@ -1680,7 +2009,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "permissions.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRolesAndPermissionsUiStore() as any;
+    const store = getRolesAndPermissionsUiStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RolesAndPermissionsUi.defaultConfig } as any;
     const query = c.req.query();
     const result = (RolesAndPermissionsUi.listPermissionsForRole as any)(ctx, componentDeps, query);
@@ -1695,7 +2024,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "search.query");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSearchAndFilterStore() as any;
+    const store = getSearchAndFilterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SearchAndFilter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1709,7 +2038,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "search.query");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSearchAndFilterStore() as any;
+    const store = getSearchAndFilterStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SearchAndFilter.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1725,7 +2054,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.billing.generate");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantBillingStore() as any;
+    const store = getRestaurantBillingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantBilling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1739,7 +2068,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.billing.record_payment");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantBillingStore() as any;
+    const store = getRestaurantBillingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantBilling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1755,7 +2084,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.delivery.assign");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantDeliveryManagementStore() as any;
+    const store = getRestaurantDeliveryManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantDeliveryManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1769,7 +2098,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.delivery.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantDeliveryManagementStore() as any;
+    const store = getRestaurantDeliveryManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantDeliveryManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1785,7 +2114,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.ingredients.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantIngredientTrackingStore() as any;
+    const store = getRestaurantIngredientTrackingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantIngredientTracking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1799,7 +2128,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.ingredients.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantIngredientTrackingStore() as any;
+    const store = getRestaurantIngredientTrackingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantIngredientTracking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1815,7 +2144,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.kitchen.tickets.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantKitchenDisplayStore() as any;
+    const store = getRestaurantKitchenDisplayStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantKitchenDisplay.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1829,7 +2158,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.kitchen.tickets.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantKitchenDisplayStore() as any;
+    const store = getRestaurantKitchenDisplayStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantKitchenDisplay.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1843,7 +2172,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.kitchen.tickets.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantKitchenDisplayStore() as any;
+    const store = getRestaurantKitchenDisplayStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantKitchenDisplay.defaultConfig } as any;
     const query = c.req.query();
     const result = (RestaurantKitchenDisplay.listTicketsForStation as any)(ctx, componentDeps, query);
@@ -1858,7 +2187,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.menu.items.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantMenuStore() as any;
+    const store = getRestaurantMenuStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantMenu.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1872,7 +2201,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.menu.availability.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantMenuStore() as any;
+    const store = getRestaurantMenuStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantMenu.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1888,7 +2217,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.orders.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantOrderManagementStore() as any;
+    const store = getRestaurantOrderManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantOrderManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1902,7 +2231,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.orders.update_status");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantOrderManagementStore() as any;
+    const store = getRestaurantOrderManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantOrderManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1916,7 +2245,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.orders.cancel");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantOrderManagementStore() as any;
+    const store = getRestaurantOrderManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantOrderManagement.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (RestaurantOrderManagement.cancelOrder as any)(ctx, componentDeps, input);
@@ -1931,7 +2260,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.promotions.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantPromotionsStore() as any;
+    const store = getRestaurantPromotionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantPromotions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1945,7 +2274,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.promotions.redeem");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantPromotionsStore() as any;
+    const store = getRestaurantPromotionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantPromotions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1961,7 +2290,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.reservations.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantReservationsStore() as any;
+    const store = getRestaurantReservationsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantReservations.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -1975,7 +2304,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.reservations.cancel");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantReservationsStore() as any;
+    const store = getRestaurantReservationsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantReservations.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (RestaurantReservations.cancelReservation as any)(ctx, componentDeps, input);
@@ -1990,7 +2319,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.shifts.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantShiftManagementStore() as any;
+    const store = getRestaurantShiftManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantShiftManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2004,7 +2333,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.shifts.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantShiftManagementStore() as any;
+    const store = getRestaurantShiftManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantShiftManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2020,7 +2349,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.tables.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantTableManagementStore() as any;
+    const store = getRestaurantTableManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantTableManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2034,7 +2363,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.tables.assign");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantTableManagementStore() as any;
+    const store = getRestaurantTableManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantTableManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2048,7 +2377,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "restaurant.tables.assign");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRestaurantTableManagementStore() as any;
+    const store = getRestaurantTableManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RestaurantTableManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2064,7 +2393,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.barcodes.register");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailBarcodeScanningStore() as any;
+    const store = getRetailBarcodeScanningStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailBarcodeScanning.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2078,7 +2407,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.barcodes.lookup");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailBarcodeScanningStore() as any;
+    const store = getRetailBarcodeScanningStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailBarcodeScanning.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2094,7 +2423,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.customers.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailCustomerManagementStore() as any;
+    const store = getRetailCustomerManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailCustomerManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2108,7 +2437,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.customers.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailCustomerManagementStore() as any;
+    const store = getRetailCustomerManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailCustomerManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2122,7 +2451,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.customers.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailCustomerManagementStore() as any;
+    const store = getRetailCustomerManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailCustomerManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2138,7 +2467,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.inventory.adjust");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailInventoryStore() as any;
+    const store = getRetailInventoryStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailInventory.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2152,7 +2481,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.inventory.thresholds.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailInventoryStore() as any;
+    const store = getRetailInventoryStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailInventory.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2166,7 +2495,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.inventory.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailInventoryStore() as any;
+    const store = getRetailInventoryStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailInventory.defaultConfig } as any;
     const query = c.req.query();
     const result = (RetailInventory.listMovementsForProduct as any)(ctx, componentDeps, query);
@@ -2181,7 +2510,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.pos.checkout");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailPointOfSaleStore() as any;
+    const store = getRetailPointOfSaleStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailPointOfSale.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2195,7 +2524,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.pos.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailPointOfSaleStore() as any;
+    const store = getRetailPointOfSaleStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailPointOfSale.defaultConfig } as any;
     const query = c.req.query();
     const result = (RetailPointOfSale.getSale as any)(ctx, componentDeps, query);
@@ -2210,7 +2539,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.products.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailProductCatalogStore() as any;
+    const store = getRetailProductCatalogStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailProductCatalog.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2224,7 +2553,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.products.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailProductCatalogStore() as any;
+    const store = getRetailProductCatalogStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailProductCatalog.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2238,7 +2567,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.products.archive");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailProductCatalogStore() as any;
+    const store = getRetailProductCatalogStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailProductCatalog.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2254,7 +2583,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.promotions.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailPromotionsStore() as any;
+    const store = getRetailPromotionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailPromotions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2268,7 +2597,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.promotions.activate");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailPromotionsStore() as any;
+    const store = getRetailPromotionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailPromotions.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2282,7 +2611,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.promotions.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailPromotionsStore() as any;
+    const store = getRetailPromotionsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailPromotions.defaultConfig } as any;
     const query = c.req.query();
     const result = (RetailPromotions.listActivePromotions as any)(ctx, componentDeps, query);
@@ -2297,7 +2626,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.reports.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailSalesReportsStore() as any;
+    const store = getRetailSalesReportsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailSalesReports.defaultConfig } as any;
     const query = c.req.query();
     const result = (RetailSalesReports.computeDailySummary as any)(ctx, componentDeps, query);
@@ -2312,7 +2641,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.stockalerts.evaluate");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailStockAlertsStore() as any;
+    const store = getRetailStockAlertsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailStockAlerts.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2326,7 +2655,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.stockalerts.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailStockAlertsStore() as any;
+    const store = getRetailStockAlertsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailStockAlerts.defaultConfig } as any;
     const query = c.req.query();
     const result = (RetailStockAlerts.listActiveAlerts as any)(ctx, componentDeps, query);
@@ -2341,7 +2670,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.suppliers.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailSupplierManagementStore() as any;
+    const store = getRetailSupplierManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailSupplierManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2355,7 +2684,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.purchaseorders.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailSupplierManagementStore() as any;
+    const store = getRetailSupplierManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailSupplierManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2369,7 +2698,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "retail.purchaseorders.receive");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getRetailSupplierManagementStore() as any;
+    const store = getRetailSupplierManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: RetailSupplierManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2385,7 +2714,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.attendance.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolAttendanceStore() as any;
+    const store = getSchoolAttendanceStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolAttendance.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2399,7 +2728,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.attendance.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolAttendanceStore() as any;
+    const store = getSchoolAttendanceStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolAttendance.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolAttendance.computeAttendanceRate as any)(ctx, componentDeps, query);
@@ -2414,7 +2743,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.certificates.issue");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolCertificatesStore() as any;
+    const store = getSchoolCertificatesStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolCertificates.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolCertificates.issueCertificate as any)(ctx, componentDeps, query);
@@ -2427,7 +2756,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.certificates.revoke");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolCertificatesStore() as any;
+    const store = getSchoolCertificatesStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolCertificates.defaultConfig } as any;
     const input = { ...c.req.param() };
     const result = (SchoolCertificates.revokeCertificate as any)(ctx, componentDeps, input);
@@ -2442,7 +2771,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.scheduling.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolClassSchedulingStore() as any;
+    const store = getSchoolClassSchedulingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolClassScheduling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2456,7 +2785,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.scheduling.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolClassSchedulingStore() as any;
+    const store = getSchoolClassSchedulingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolClassScheduling.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolClassScheduling.listSessionsForTeacher as any)(ctx, componentDeps, query);
@@ -2471,7 +2800,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.exams.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolExamsStore() as any;
+    const store = getSchoolExamsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolExams.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2485,7 +2814,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.exams.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolExamsStore() as any;
+    const store = getSchoolExamsStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolExams.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2501,7 +2830,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.grades.record");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolGradingStore() as any;
+    const store = getSchoolGradingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolGrading.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2515,7 +2844,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.grades.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolGradingStore() as any;
+    const store = getSchoolGradingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolGrading.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolGrading.computeStudentAverage as any)(ctx, componentDeps, query);
@@ -2530,7 +2859,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.parent_comm.send");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolParentCommunicationStore() as any;
+    const store = getSchoolParentCommunicationStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolParentCommunication.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2544,7 +2873,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.parent_comm.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolParentCommunicationStore() as any;
+    const store = getSchoolParentCommunicationStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolParentCommunication.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolParentCommunication.listMessagesForStudent as any)(ctx, componentDeps, query);
@@ -2559,7 +2888,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.students.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolStudentEnrollmentStore() as any;
+    const store = getSchoolStudentEnrollmentStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolStudentEnrollment.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2573,7 +2902,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.students.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolStudentEnrollmentStore() as any;
+    const store = getSchoolStudentEnrollmentStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolStudentEnrollment.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2589,7 +2918,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.portal.student.view");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolStudentPortalStore() as any;
+    const store = getSchoolStudentPortalStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolStudentPortal.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2603,7 +2932,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.portal.student.view");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolStudentPortalStore() as any;
+    const store = getSchoolStudentPortalStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolStudentPortal.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2619,7 +2948,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.teachers.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolTeacherManagementStore() as any;
+    const store = getSchoolTeacherManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolTeacherManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2633,7 +2962,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.teachers.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolTeacherManagementStore() as any;
+    const store = getSchoolTeacherManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolTeacherManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolTeacherManagement.listTeachers as any)(ctx, componentDeps, query);
@@ -2648,7 +2977,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.tuition.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolTuitionManagementStore() as any;
+    const store = getSchoolTuitionManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolTuitionManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2662,7 +2991,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.tuition.record_payment");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolTuitionManagementStore() as any;
+    const store = getSchoolTuitionManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolTuitionManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2676,7 +3005,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "school.tuition.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getSchoolTuitionManagementStore() as any;
+    const store = getSchoolTuitionManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: SchoolTuitionManagement.defaultConfig } as any;
     const query = c.req.query();
     const result = (SchoolTuitionManagement.computeOutstandingBalance as any)(ctx, componentDeps, query);
@@ -2691,7 +3020,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.bookings.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceBookingStore() as any;
+    const store = getServiceBookingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceBooking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2705,7 +3034,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.bookings.update_status");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceBookingStore() as any;
+    const store = getServiceBookingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceBooking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2719,7 +3048,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.bookings.update_status");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceBookingStore() as any;
+    const store = getServiceBookingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceBooking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2735,7 +3064,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.catalog.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceCatalogStore() as any;
+    const store = getServiceCatalogStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceCatalog.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2749,7 +3078,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.catalog.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceCatalogStore() as any;
+    const store = getServiceCatalogStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceCatalog.defaultConfig } as any;
     const query = c.req.query();
     const result = (ServiceCatalog.listActiveServices as any)(ctx, componentDeps, query);
@@ -2764,7 +3093,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.customers.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceCustomerManagementStore() as any;
+    const store = getServiceCustomerManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceCustomerManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2778,7 +3107,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.customers.update");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceCustomerManagementStore() as any;
+    const store = getServiceCustomerManagementStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceCustomerManagement.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2794,7 +3123,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.feedback.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceFeedbackStore() as any;
+    const store = getServiceFeedbackStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceFeedback.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2808,7 +3137,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.feedback.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceFeedbackStore() as any;
+    const store = getServiceFeedbackStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceFeedback.defaultConfig } as any;
     const query = c.req.query();
     const result = (ServiceFeedback.listNeedsFollowUp as any)(ctx, componentDeps, query);
@@ -2823,7 +3152,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.invoicing.generate");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceInvoicingStore() as any;
+    const store = getServiceInvoicingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceInvoicing.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2837,7 +3166,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.invoicing.record_payment");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceInvoicingStore() as any;
+    const store = getServiceInvoicingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceInvoicing.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2853,7 +3182,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.jobs.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceJobTrackingStore() as any;
+    const store = getServiceJobTrackingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceJobTracking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2867,7 +3196,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.jobs.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceJobTrackingStore() as any;
+    const store = getServiceJobTrackingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceJobTracking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2881,7 +3210,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.jobs.update_task");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceJobTrackingStore() as any;
+    const store = getServiceJobTrackingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceJobTracking.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2897,7 +3226,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.quotes.create");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceQuotesStore() as any;
+    const store = getServiceQuotesStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceQuotes.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2911,7 +3240,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.quotes.approve");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceQuotesStore() as any;
+    const store = getServiceQuotesStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceQuotes.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2927,7 +3256,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.scheduling.manage");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceSchedulingStore() as any;
+    const store = getServiceSchedulingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceScheduling.defaultConfig } as any;
     const body = await helpers.getJsonBody(c);
     if (!body) return helpers.errorResponse({ code: "INVALID_INPUT", message: "body required" });
@@ -2941,7 +3270,7 @@ export function registerAllComponentRoutes(
     const noPerm = helpers.requirePermission(c, "service.scheduling.read");
     if (noPerm) return noPerm;
     const ctx = c.get("tenantCtx");
-    const store = getServiceSchedulingStore() as any;
+    const store = getServiceSchedulingStore(persistentStores) as any;
     const componentDeps = { store, permissions: checker, audit: auditSink, config: ServiceScheduling.defaultConfig } as any;
     const query = c.req.query();
     const result = (ServiceScheduling.isAvailable as any)(ctx, componentDeps, query);

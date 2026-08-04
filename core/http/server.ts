@@ -593,7 +593,7 @@ function registerAuditLogRoutes(app: Hono<AppEnv>) {
  * To extend with reusable component routes, call `registerComponentRoutes`
  * after this, or add routes directly to the returned app.
  */
-export function createApp(deps: ServerDeps): Hono<AppEnv> {
+export function createApp(deps: ServerDeps, persistentStores?: Record<string, unknown>): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
 
   // Middleware chain (order matters).
@@ -612,6 +612,8 @@ export function createApp(deps: ServerDeps): Hono<AppEnv> {
   registerAuditLogRoutes(app);
 
   // Component routes (all 65 reusable components, 150 operations).
+  // Persistent stores are injected for verticals that have SQLite adapters
+  // (currently restaurants). Other verticals use in-memory stores.
   registerAllComponentRoutes(app, deps, {
     requireTenant,
     requirePermission,
@@ -619,7 +621,7 @@ export function createApp(deps: ServerDeps): Hono<AppEnv> {
     getJsonBody,
     resultResponse,
     errorResponse,
-  });
+  }, persistentStores);
 
   return app;
 }
