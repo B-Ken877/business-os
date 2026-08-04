@@ -1,11 +1,13 @@
 import { defineConfig } from "vitest/config";
 import { resolve } from "node:path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  plugins: [tsconfigPaths()],
   resolve: {
     alias: {
+      // Fallbacks for cases where tsconfig paths don't resolve (e.g. .ts file paths).
       "@business-os/shared": resolve(__dirname, "core/platform/index.ts"),
-      "@business-os/core": resolve(__dirname, "core/index.ts"),
     },
   },
   test: {

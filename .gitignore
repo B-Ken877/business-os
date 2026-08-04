@@ -10,6 +10,12 @@ build/
 coverage/
 .vitest-cache/
 
+# SQLite database (created on first run — do not commit)
+data/
+*.db
+*.db-shm
+*.db-wal
+
 # Environment & secrets
 .env
 .env.local
