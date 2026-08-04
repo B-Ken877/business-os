@@ -1,157 +1,129 @@
 # Business OS
 
-> Digital infrastructure for Haitian businesses — building reusable systems, not just websites.
+> Digital infrastructure for Haitian businesses — a backend factory with ready components, not a template store.
 
 ---
 
-## 1. Project Overview
+## The Car Factory Analogy (read this first)
 
-**Business OS** is a digital infrastructure platform designed to help Haitian businesses modernize their operations. It is built on the belief that small and medium enterprises deserve the same operational sophistication as large corporations, but delivered in a way that is affordable, contextualized, and sustainable.
+Business OS is a **car factory**, not a car dealership.
 
-### Why it exists
+When a customer orders a car from a factory, they don't pick from a catalog of pre-built cars. They describe what they want — an SUV, a sports car, a pickup truck. The factory has every component ready: the engine, the wheels, the flywheel, the door system, the suspension, the security system. But the factory does **not** have a pre-built SUV sitting on a shelf waiting for a new paint job. The factory builds the SUV from scratch — designs the body, shapes the chassis, polishes the finish — using the same engine and wheels that every other car uses.
 
-Most digital solutions available to Haitian businesses today fall into one of two extremes. On one side, there are generic website builders that produce a beautiful online presence but do nothing to actually run the business — they cannot track inventory, manage employees, organize students, or schedule appointments. On the other side, there are enterprise systems that are powerful but prohibitively expensive, overly complex, and built for contexts that do not match the realities of doing business in Haiti.
+Business OS works the same way:
 
-Business OS exists to fill the gap in between. It is a layered platform that treats a website as just one layer of a much larger operational system. A restaurant does not need a brochure — it needs a way to manage its menu, track ingredients, handle reservations, and reconcile daily sales. A school does not need a flyer — it needs to enroll students, collect tuition, track attendance, and communicate with parents. A clinic does not need a landing page — it needs to manage patients, appointments, prescriptions, and medical records.
+| Factory | Business OS |
+|---|---|
+| Engine | `core/` (identity, auth, organizations, authorization, audit, HTTP server, SQLite persistence) |
+| Wheels, doors, suspension, flywheel | `reusable-components/` (65 industry-specific modules across 7 verticals) |
+| The custom car body, designed from scratch per customer | The website's UI, designed from scratch per client |
+| The customer says "I want an SUV" | The client says "I want a restaurant website with online ordering and a loyalty program" |
+| The factory assembles the SUV using the same engine | The AI assembles the website using the same backend |
+| The SUV is polished and shaped specifically for this customer | The UI is designed and styled specifically for this client |
 
-### The vision
+**The backend components are ready. The UI is never pre-made. Every website is designed from scratch.**
 
-The vision of Business OS is to become the **digital infrastructure layer** for Haitian businesses — the same way an operating system provides core services to applications, Business OS provides core operational services to businesses. Each business that joins the platform inherits a complete, working digital system tailored to its industry, rather than starting from zero and rebuilding what every other business has already built.
-
-The goal is **not** to create simple websites. The goal is to create reusable business systems that help organizations of all kinds manage their operations digitally, efficiently, and at scale.
-
----
-
-## 2. Core Philosophy
-
-Businesses across industries share a surprisingly large set of common operational needs. Every business — whether a restaurant, a clinic, a school, or a church — must deal with identity (who are our customers, members, students, patients), money (revenue, expenses, invoicing, payments), communication (notifications, messaging, reminders), people (staff, roles, permissions), and reporting (dashboards, summaries, exports).
-
-Yet historically, every business rebuilds these same capabilities from scratch. A restaurant builds a customer database. A clinic builds a patient database. A school builds a student database. The names change, but the underlying shape of the data and the operations on it are nearly identical. This duplication of effort is one of the main reasons digital transformation is slow and expensive.
-
-**Business OS is built on a different principle: build once, reuse many times.**
-
-Instead of creating every system from scratch for each new business, we create reusable modules — tested, documented, and shaped by real-world use across many businesses. When a new business joins the platform, we do not start with an empty codebase. We start by composing existing modules, then customize only the parts that are truly unique to that business.
-
-This approach delivers three concrete benefits:
-
-1. **Speed** — A new business can go live in days, not months, because most of its system already exists.
-2. **Quality** — Reusable modules are battle-tested across many businesses, so bugs are caught and fixed once, not rediscovered in every new project.
-3. **Affordability** — Because the cost of building each module is shared across many businesses, the per-business cost drops dramatically.
-
-The philosophy is borrowed from industrial engineering: standardize the parts, customize the assembly. A car manufacturer does not redesign the bolt every time it builds a new car — it uses standard bolts and focuses its engineering effort on what makes the new car different. Business OS applies the same logic to software.
+This is the single most important rule of the platform. If you are an AI agent building a website for a client, you do not start from a template. You do not pick a pre-built UI. You design the UI from scratch based on what the client tells you they need, and you wire it to the ready-made backend components.
 
 ---
 
-## 3. Architecture Concept
+## What is ready (the factory inventory)
 
-Business OS is organized in four layers, each layer building on the one below it. This layering is what allows the platform to deliver both flexibility (every business gets a system tailored to its needs) and consistency (every business benefits from the same tested foundation).
+### Layer 1 — Core (`core/`)
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  4. Business Projects    →  Custom systems per business  │
-├─────────────────────────────────────────────────────────┤
-│  3. Templates            →  Pre-assembled industry kits   │
-├─────────────────────────────────────────────────────────┤
-│  2. Reusable Components  →  Industry-specific modules    │
-├─────────────────────────────────────────────────────────┤
-│  1. Core                 →  Shared foundation            │
-└─────────────────────────────────────────────────────────┘
-```
+The engine. Every business needs this, regardless of industry.
 
-### Layer 1 — Core Systems (shared by all businesses)
+| Module | What it does | Status |
+|---|---|---|
+| `platform/` | Universal primitives — `TenantContext`, `Result`, `PermissionChecker`, `AuditSink`, `EntityId`, `ErrorCode` | ✅ Stable |
+| `identity/` | Users, scrypt password hashing, sessions, login/register/logout, password change, session revocation | ✅ Stable |
+| `organizations/` | Tenants, membership, invitations, tenant resolution by slug | ✅ Stable |
+| `authorization/` | RBAC with system roles (owner/administrator/member/viewer), custom roles, wildcard permissions (`*.*`, `retail.*`) | ✅ Stable |
+| `audit-log/` | Append-only audit trail, queryable with filters + pagination, 7-year retention | ✅ Stable |
+| `http/` | Hono HTTP server with auth + tenant + permission middleware, 166 routes wired (16 core + 150 component) | ✅ Stable |
+| `persistence-sqlite/` | SQLite adapter for all core stores — zero-config, file-based, WAL mode | ✅ Stable |
 
-The `core/` directory contains systems that **every** business needs, regardless of industry. These are the universal building blocks: identity and user management, authentication and authorization, organizations and multi-tenancy, billing and payments, notifications, file storage, audit logs, dashboards, and reporting. A restaurant needs them. A church needs them. A clinic needs them. Because they are shared, they are built once to a high standard and inherited by all.
+### Layer 2 — Reusable Components (`reusable-components/`)
 
-### Layer 2 — Reusable Components (industry-specific)
+The wheels, doors, suspension. Industry-specific modules, ready to power any website in that industry.
 
-The `reusable-components/` directory contains modules tailored to specific industries. Each industry has its own subdirectory:
+**65 components across 7 verticals:**
 
-- **`restaurants/`** — menu management, reservations, kitchen tickets, ingredient tracking, table layouts.
-- **`retail-shops/`** — inventory, barcode scanning, point-of-sale, supplier management, stock alerts.
-- **`schools/`** — enrollment, grading, attendance, tuition collection, parent communication.
-- **`churches/`** — member directories, tithes and offerings, event scheduling, small groups.
-- **`clinics/`** — patient records, appointments, prescriptions, medical history.
-- **`other-businesses/`** — a home for components that do not yet belong to a named industry, and a starting point for new verticals as the platform expands.
+| Vertical | Folder | Components | What they cover |
+|---|---|---|---|
+| Retail shops | `retail-shops/` | 9 | Products, inventory, POS, suppliers, stock alerts, customers, barcodes, sales reports, promotions |
+| Restaurants | `restaurants/` | 10 | Menu, orders, tables, kitchen display, reservations, delivery, ingredients, billing, shifts, promotions |
+| Schools | `schools/` | 10 | Enrollment, attendance, tuition, grading, scheduling, parent comms, exams, certificates, teachers, student portal |
+| Churches | `churches/` | 8 | Members, donations, events, groups, attendance, announcements, volunteers, sermons |
+| Clinics | `clinics/` | 10 | Patients, appointments, medical records, prescriptions, triage, billing, lab orders, consent, reminders, staff |
+| Service businesses | `service-businesses/` | 8 | Service catalog, quotes, booking, job tracking, invoicing, customers, feedback, scheduling |
+| Cross-cutting | `cross-cutting/` | 10 | Messaging, documents, reports, notes, activity timeline, search, notifications, forms, payments, roles UI |
 
-A component in this layer is reusable across all businesses in that industry, but not across industries. A school's attendance module is not directly useful to a clinic, but it is useful to every school.
+Every component:
+- Has a stable ID, README, types, validation, logic, tests, and examples
+- Enforces permission checks, tenant isolation, and audit logging on every operation
+- Is callable via HTTP at `/v1/{component-id}/{operation-name}`
+- Returns `Result<T>` (success) or structured errors (never throws on business logic)
 
-### Layer 3 — Templates (rapid deployment)
+### What is NOT ready (by design)
 
-The `templates/` directory contains **pre-assembled combinations** of core + reusable components, packaged together as a ready-to-deploy starting point for a given industry. A template is a recipe: it selects which core modules and which reusable components to include, configures them with sensible defaults, and produces a working system that can be deployed as soon as the business provides its specific data (name, logo, staff list, etc.).
+- **No pre-built UI.** There are zero React components, zero page templates, zero design systems. Every website's UI is built from scratch per client.
+- **No templates (Layer 3).** There is no `templates/restaurants/` kit that pre-assembles restaurant components with a default UI. Templates in this platform are recipes for which backend components to include, not pre-built UIs.
+- **No business projects (Layer 4).** No specific client has been onboarded yet.
 
-Templates are what make rapid deployment possible. Instead of assembling a system component by component for each new business, we start from a template and customize from there.
-
-### Layer 4 — Business Projects (implementations)
-
-The `business-projects/` directory contains the actual systems built for specific, real businesses. Each project is a concrete instantiation of a template, customized with the business's branding, data, workflows, and any unique features they require. This is the only layer that contains business-specific code — everything below it is reusable.
-
-This separation is deliberate. It keeps the reusable layers clean and generic, while ensuring every customization a specific business needs is isolated and does not leak into the shared platform. When a customization turns out to be broadly useful, it can be promoted from a business project up into a reusable component, and eventually into a template — a continuous flow of improvements from the specific to the general.
-
----
-
-## 4. AI-Assisted Development
-
-Building and maintaining a platform of this scope by hand would require a large engineering team and years of effort — resources that are not realistic for the context Business OS serves. For this reason, **AI-assisted development is not an optimization; it is a core strategy.**
-
-The `ai-instructions/` directory holds structured prompts, context documents, and operational guidelines that allow AI tools to assemble systems from the reusable building blocks while maintaining consistency across projects. Rather than asking an AI to "build a restaurant system" from nothing — which would produce inconsistent, unpredictable results — we ask the AI to assemble a system from named, documented components, following templates and conventions it has been explicitly instructed to follow.
-
-The key principle is **composition over generation**. The AI does not invent new patterns for every project. It selects existing modules, wires them together according to a template, and produces only the small amount of glue code or customization that is genuinely unique to the business at hand. This keeps output predictable, reviewable, and aligned with the platform's standards.
-
-This approach has three practical consequences for how the platform is built:
-
-1. **Modules must be self-describing.** Each reusable component must clearly declare what it does, what it expects as input, and what it provides as output — so the AI can reason about it without ambiguity.
-2. **Conventions must be explicit.** Naming, file structure, configuration format, and integration patterns must be documented once and followed everywhere, so the AI never has to guess.
-3. **Customization must be isolated.** Business-specific logic lives only in `business-projects/`, never inside reusable components, so the AI's changes are always contained and reviewable.
+**This is intentional.** Pre-built UI would defeat the purpose — every client gets a website designed specifically for them.
 
 ---
 
-## 5. Future Vision
+## How to build a website for a client (the AI playbook)
 
-Business OS is built with a long horizon in mind. The immediate goal is to serve Haitian businesses across retail, restaurants, schools, churches, and clinics — but the architecture is intentionally general, because the underlying need it addresses is not unique to Haiti.
+If you are an AI agent and a human says "build a website for [client]," follow this exact sequence. The full playbook is in `ai-instructions/building-for-a-client.md`.
 
-### Helping thousands of businesses digitize
+### Step 1 — Listen to the client
 
-The success metric for Business OS is not the number of features it has, or the elegance of its codebase — it is the number of businesses that have moved from manual, paper-based, or fragmented operations to a coherent digital system. Every restaurant that stops taking orders on paper, every school that stops tracking tuition in a notebook, every clinic that can finally search a patient's history in seconds — each of these is a real, measurable improvement in the way a business operates.
+Ask what the client does, who their customers are, what they want the website to achieve. Do not assume — ask. A restaurant with online ordering is a different website from a restaurant with only a menu display, even though they use the same backend components.
 
-The platform is designed to scale to thousands of businesses, each one adding only incremental cost because the shared layers (core, components, templates) are amortized across all of them.
+### Step 2 — Select backend components from the inventory
 
-### A scalable business operating system
+Based on what the client needs, select which `reusable-components/` modules to use. For a restaurant with online ordering:
+- `restaurant-menu` (the menu)
+- `restaurant-order-management` (the orders)
+- `restaurant-billing` (the bills)
+- `messaging-center` (order confirmations)
+- `payments-or-collections` (payment recording)
+- `notifications-center` (in-app notifications)
 
-As the number of businesses on the platform grows, the platform itself becomes more valuable. Each new business either uses existing modules (validating them through use) or contributes new requirements that, once built, become reusable for the next business. This compounding effect is what turns Business OS from a series of one-off projects into a true operating system — a platform that grows more capable with every business it serves.
+You do not write any backend code. You select from what exists.
 
-### Turning repeated solutions into reusable products
+### Step 3 — Design the UI from scratch
 
-The long-term flywheel is simple: every time the platform solves the same problem for a second or third business, that solution is a candidate for promotion — from a business project, up into a reusable component, and eventually into a template. Over time, the platform's library of reusable assets grows, the cost of onboarding each new business drops, and the kinds of businesses the platform can serve expands. This is how a service business scales into a product business, and it is the central economic engine of Business OS.
+Design the website's UI based on the client's brand, their customers, and their specific needs. Do not copy a template. Do not reuse a previous client's design. Build it fresh:
+- Choose colors, typography, layout — based on the client's identity
+- Choose which screens to build — based on what the client's customers need to do
+- Choose the user flow — based on how this specific business operates
+- Write the React (or whatever frontend framework) components from scratch
 
----
+### Step 4 — Wire the UI to the backend
 
-## 6. Development Principles
+Every UI action calls an HTTP endpoint that already exists. You do not write backend logic. You call:
+- `POST /v1/identity/register` when a user signs up
+- `POST /v1/identity/login` when a user logs in
+- `POST /v1/organizations` when the business onboards
+- `PATCH /v1/retail-inventory/adjust-stock` when stock changes
+- etc.
 
-All contributors to Business OS — human or AI — are expected to follow these principles. They are listed in order of priority: when principles conflict, the earlier one wins.
+The full API is documented in each component's `api/contract.ts` and `documentation/contract.md`.
 
-### Reusability
+### Step 5 — Deploy
 
-Before building anything new, always ask: *has someone already built this?* A new feature should begin as a search through `core/`, `reusable-components/`, and `templates/`. Only when no existing module fits should new code be written, and even then, it should be written with reuse in mind — generic interfaces, configurable behavior, no business-specific assumptions baked in.
+The backend runs with `npm start` (SQLite, zero external setup). The frontend is a static build served separately. Point the frontend at the backend's URL.
 
-### Scalability
+### What you must NEVER do
 
-Every architectural decision must consider what happens at 10x and 100x the current scale. Multi-tenancy must be a first-class concern. Data isolation between businesses must be enforceable by the platform, not relied upon as a convention. Performance-sensitive operations must be designed to scale horizontally, not vertically.
-
-### Maintainability
-
-Code that cannot be maintained cannot be trusted in production. Every module must be readable, documented, and testable. Every change must be reviewable by someone other than its author. The use of AI does not relax this principle — it intensifies it, because AI-generated code is especially prone to subtle errors that only careful review can catch.
-
-### Simplicity
-
-The simplest solution that meets the requirement is the right solution. Avoid speculative generality, premature abstraction, and "we might need this later" features. A smaller, clearer codebase is easier to maintain, easier to secure, and easier to hand off. When in doubt, build the smaller thing.
-
-### Security
-
-Business OS handles sensitive data: customer records, medical information, financial transactions, student records, religious member data. Security is not a feature to be added later; it is a baseline requirement for every commit. Authentication, authorization, encryption in transit and at rest, input validation, and audit logging must be present from day one for any module that touches sensitive data.
-
-### Documentation
-
-Undocumented code is unfinished code. Every module must be accompanied by documentation that explains what it does, how to use it, how to configure it, and what its limitations are. Documentation is not a courtesy for future readers — it is the contract that makes the module reusable, and the instruction manual that lets the AI-assisted development process reason about it correctly.
+- **Never copy a previous client's UI.** Every client gets a from-scratch design.
+- **Never write backend business logic.** If the backend doesn't support something, extend a reusable component — don't write one-off backend code in the client project.
+- **Never skip the listening step.** Building the wrong website fast is worse than building the right website slowly.
+- **Never assume the industry.** A "restaurant" might be a food truck, a fine dining establishment, or a bakery — each needs a different UI despite using the same backend components.
 
 ---
 
@@ -159,28 +131,73 @@ Undocumented code is unfinished code. Every module must be accompanied by docume
 
 ```
 business-os/
-├── README.md
-├── core/                       # Shared foundation used by every business
-│   └── .gitkeep
-├── reusable-components/        # Industry-specific reusable modules
-│   ├── restaurants/
-│   ├── retail-shops/
-│   ├── schools/
-│   ├── churches/
-│   ├── clinics/
-│   └── other-businesses/
-├── templates/                  # Pre-assembled industry deployment kits
-│   └── .gitkeep
-├── business-projects/          # Custom implementations for specific businesses
-│   └── .gitkeep
-├── ai-instructions/            # Prompts, context, and conventions for AI-assisted development
-│   └── .gitkeep
-└── documentation/              # Platform-wide documentation and guides
-    └── .gitkeep
+├── README.md                          # This file — the factory philosophy
+├── server.ts                          # HTTP server entry point (npm start)
+├── package.json                       # TypeScript + Hono + better-sqlite3 + Vitest
+├── tsconfig.json                      # Path aliases: @business-os/{shared,core,components}
+├── vitest.config.ts                   # Test config
+│
+├── ai-instructions/                   # The constitution — read before building anything
+│   ├── architecture-rules.md          # The four-layer model
+│   ├── component-standard.md          # How components are structured
+│   ├── git-workflow.md                # Branch + commit + PR rules
+│   ├── security-rules.md              # Auth, authz, tenant isolation, data protection
+│   └── building-for-a-client.md       # THE PLAYBOOK — how to build a client website
+│
+├── core/                              # Layer 1 — the engine (7 modules, stable)
+│   ├── platform/                      # Universal primitives
+│   ├── identity/                      # Users, passwords, sessions
+│   ├── organizations/                 # Tenants, membership, invitations
+│   ├── authorization/                 # RBAC, roles, permissions
+│   ├── audit-log/                     # Append-only audit trail
+│   ├── http/                          # Hono server + 166 routes
+│   ├── persistence-sqlite/            # SQLite adapter (zero-config)
+│   └── README.md                      # Module catalog + usage
+│
+├── reusable-components/               # Layer 2 — the wheels/doors/suspension (65 components)
+│   ├── retail-shops/                  # 9 components
+│   ├── restaurants/                   # 10 components
+│   ├── schools/                       # 10 components
+│   ├── churches/                      # 8 components
+│   ├── clinics/                       # 10 components
+│   ├── service-businesses/            # 8 components
+│   ├── cross-cutting/                 # 10 components
+│   ├── _shared/                       # Deprecated shim (moved to core/platform/)
+│   ├── README.md                      # Component catalog
+│   └── library-manifest.json          # Machine-readable index
+│
+├── templates/                         # Layer 3 — NOT YET BUILT (recipes, not pre-built UIs)
+├── business-projects/                 # Layer 4 — NOT YET BUILT (per-client implementations)
+│
+└── documentation/                     # Platform-wide docs
+```
+
+---
+
+## Current Status
+
+| Layer | Status | Tests |
+|---|---|---|
+| 1. Core | ✅ Built — 7 modules, all stable | 95 core tests |
+| 2. Reusable Components | ✅ Built — 65 components, all stable | 1,044 component tests |
+| 3. Templates | ❌ Not built — by design, will be backend recipes only | — |
+| 4. Business Projects | ❌ Not built — built per client | — |
+| HTTP server | ✅ Built — 166 routes wired | 28 integration tests |
+| **Total** | | **1,151 tests, 0 typecheck errors** |
+
+Run the backend:
+```bash
+npm install
+npm start    # → http://localhost:3000
+```
+
+Run the tests:
+```bash
+npm test     # → 1,151 tests passing
 ```
 
 ---
 
 ## License
 
-To be defined. No application code has been added to this repository yet — only the architectural skeleton and documentation.
+To be defined.

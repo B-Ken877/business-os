@@ -102,7 +102,11 @@ Industry-specific examples:
 
 ### Layer 3: Templates
 
-The `templates/` directory contains **deployment blueprints** — pre-assembled combinations of core capabilities and reusable components, packaged together as a ready-to-deploy starting point for a given industry. A template is a recipe, not a runtime.
+The `templates/` directory contains **backend deployment blueprints** — pre-assembled combinations of core capabilities and reusable components, packaged together as a ready-to-deploy starting point for a given industry. A template is a recipe for which **backend** to include, **not** a pre-built UI.
+
+**CRITICAL — Templates do NOT contain UI.** This is the single most important rule about Layer 3. A template declares which backend components to enable and how to configure them. It does **not** include a pre-built website, a pre-built React app, or a pre-built design system. Every client's UI is designed from scratch — see `ai-instructions/building-for-a-client.md`.
+
+The factory analogy: a template is a parts list for a car's engine bay (which engine, which suspension, which transmission). It is not a car body. The car body is designed and built separately for each customer.
 
 A template declares:
 
@@ -117,20 +121,23 @@ A restaurant template typically bundles:
 - Core (full set)
 - Menu component
 - Order component
-- Customer component
+- Billing component
 - Optional add-ons: Reservations, Delivery, Loyalty — each toggleable per tenant.
 
-**The purpose of templates is to accelerate onboarding.** Without a template, assembling a system for a new business means selecting components one by one, wiring them together, and applying sensible defaults — a process that, even with AI assistance, takes time and is error-prone. With a template, the same outcome is achieved by selecting a single starting point and then customizing only what is unique to this business. Templates turn a multi-day assembly task into a multi-hour configuration task.
+**The purpose of templates is to accelerate backend onboarding.** Without a template, assembling a backend for a new business means selecting components one by one and applying sensible defaults — a process that, even with AI assistance, takes time. With a template, the backend is ready in minutes. The UI is then designed from scratch on top of that ready backend.
 
 ### Layer 4: Business Projects
 
-The `business-projects/` directory contains **implementations for real customers**. Each project is a concrete instantiation of a template, customized with the business's branding, data, workflows, and any genuinely unique features they require.
+The `business-projects/` directory contains **implementations for real customers**. Each project has two parts:
+1. **Backend configuration** — which template to use, which components to enable, what configuration values to apply. This is a thin layer; the backend itself lives in Layers 1–2.
+2. **The UI** — designed from scratch for this specific client. This is where the "car body" is built. Every client's UI is unique — see `ai-instructions/building-for-a-client.md`.
 
 **Rules governing Layer 4:**
 
-- **Avoid creating unique code unless necessary.** The first question when onboarding a new business is never "what should we build?" — it is "what does the platform already provide that we can configure?" Unique code is a last resort, not a starting point.
-- **Prefer configuration.** Variation between two businesses in the same industry should, wherever possible, be expressed as a difference in configuration rather than a difference in code. Two restaurants with different menus are not two codebases — they are two tenants with different `menu` data.
-- **Custom features should be evaluated for promotion.** When a custom feature built for one business turns out to be broadly useful, it must be promoted: from the business project, up into a reusable component, and eventually — if universally relevant — into a template or even into core. This promotion flow is described in detail in `component-standard.md`, Section 2.
+- **The UI is always designed from scratch.** No pre-built templates, no copied designs from previous clients. Every client gets a website designed specifically for their brand, their customers, and their needs.
+- **Backend code in Layer 4 is forbidden.** The first question when onboarding a new business is never "what backend should we build?" — it is "which existing backend components does this client need?" Backend logic lives in Layers 1–2, never in Layer 4.
+- **Prefer backend configuration over backend code.** Variation between two businesses in the same industry should be expressed as a difference in backend configuration (which components enabled, what config values), not as new backend code. Two restaurants with different menus are not two backends — they are two tenants with different `menu` data.
+- **Custom features should be evaluated for promotion.** When a custom UI feature built for one business turns out to be a broadly useful backend capability, it must be promoted: from the business project, up into a reusable component (Layer 2), and eventually — if universally relevant — into a template (Layer 3) or even into core (Layer 1). This promotion flow is described in detail in `component-standard.md`, Section 2. **Note: only backend capabilities get promoted — UI designs are never promoted and never shared between clients.**
 
 ---
 
