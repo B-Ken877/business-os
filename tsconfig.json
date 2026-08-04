@@ -18,7 +18,8 @@
       "@business-os/shared": ["./core/platform/index.ts"],
       "@business-os/shared/*": ["./core/platform/*"],
       "@business-os/core": ["./core/index.ts"],
-      "@business-os/core/*": ["./core/*"]
+      "@business-os/core/*": ["./core/*"],
+      "@business-os/components/*": ["./reusable-components/*"]
     }
   },
   "include": [

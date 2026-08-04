@@ -82,6 +82,8 @@ import {
   type Dependencies as AuditDeps,
 } from "@business-os/core/audit-log";
 
+import { registerAllComponentRoutes } from "./generated-component-routes";
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -115,11 +117,11 @@ type AppEnv = {
 // Error helpers
 // ---------------------------------------------------------------------------
 
-function errorResponse(error: { code: string; message: string }, status = 400): Response {
+export function errorResponse(error: { code: string; message: string }, status = 400): Response {
   return Response.json({ error }, { status });
 }
 
-function resultResponse<T>(result: Result<T>): Response {
+export function resultResponse<T>(result: Result<T>): Response {
   if (isOk(result)) {
     return Response.json(result.value);
   }
@@ -252,7 +254,7 @@ async function tenantResolver(c: Context<AppEnv>, next: Next) {
 /**
  * Require authentication — returns 401 if no user is attached.
  */
-function requireAuth(c: Context<AppEnv>): Response | null {
+export function requireAuth(c: Context<AppEnv>): Response | null {
   if (!c.get("auth").userId) {
     return errorResponse({ code: "UNAUTHORIZED", message: "authentication required" }, 401);
   }
@@ -262,7 +264,7 @@ function requireAuth(c: Context<AppEnv>): Response | null {
 /**
  * Require a tenant context — returns 400 if no tenant is resolved.
  */
-function requireTenant(c: Context<AppEnv>): Response | null {
+export function requireTenant(c: Context<AppEnv>): Response | null {
   if (!c.get("tenantCtx")) {
     return errorResponse({ code: "TENANT_REQUIRED", message: "X-Tenant-Slug header is required" }, 400);
   }
@@ -272,7 +274,7 @@ function requireTenant(c: Context<AppEnv>): Response | null {
 /**
  * Require a specific permission. Returns 403 if the user lacks it.
  */
-function requirePermission(c: Context<AppEnv>, permission: string): Response | null {
+export function requirePermission(c: Context<AppEnv>, permission: string): Response | null {
   const ctx = c.get("tenantCtx");
   if (!ctx) {
     return errorResponse({ code: "TENANT_REQUIRED", message: "tenant context required" }, 400);
@@ -291,7 +293,7 @@ function requirePermission(c: Context<AppEnv>, permission: string): Response | n
 // Route handlers
 // ---------------------------------------------------------------------------
 
-async function getJsonBody<T = unknown>(c: Context<AppEnv>): Promise<T | null> {
+export async function getJsonBody<T = unknown>(c: Context<AppEnv>): Promise<T | null> {
   try {
     return await c.req.json();
   } catch {
@@ -608,6 +610,16 @@ export function createApp(deps: ServerDeps): Hono<AppEnv> {
   registerOrganizationRoutes(app);
   registerAuthorizationRoutes(app);
   registerAuditLogRoutes(app);
+
+  // Component routes (all 65 reusable components, 150 operations).
+  registerAllComponentRoutes(app, deps, {
+    requireTenant,
+    requirePermission,
+    requireAuth,
+    getJsonBody,
+    resultResponse,
+    errorResponse,
+  });
 
   return app;
 }
