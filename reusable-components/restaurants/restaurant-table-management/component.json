@@ -1,0 +1,49 @@
+{
+  "id": "restaurant-table-management",
+  "name": "Restaurant Table Management",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Tables, seating, table status, occupancy, and table assignments.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-order-management"
+  ],
+  "permissions": [
+    "restaurant.tables.manage",
+    "restaurant.tables.read",
+    "restaurant.tables.assign"
+  ],
+  "configOptions": [
+    {
+      "key": "maxTablesPerTenant",
+      "type": "number",
+      "default": "100",
+      "description": "Cap on tables."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Table"
+  ],
+  "operations": [
+    {
+      "name": "createTable",
+      "permission": "restaurant.tables.manage",
+      "description": "Define a new table.",
+      "auditAction": "restaurant.table.created"
+    },
+    {
+      "name": "assignOrderToTable",
+      "permission": "restaurant.tables.assign",
+      "description": "Assign an order to a free table, marking the table as seated.",
+      "auditAction": "restaurant.table.assigned"
+    },
+    {
+      "name": "releaseTable",
+      "permission": "restaurant.tables.assign",
+      "description": "Release a table after the order is served. Marks the table as dirty for cleaning.",
+      "auditAction": "restaurant.table.released"
+    }
+  ]
+}

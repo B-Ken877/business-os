@@ -1,0 +1,42 @@
+{
+  "id": "school-exams",
+  "name": "School Exams",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Exam setup, exam results, exam tracking, and academic periods.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-grading"
+  ],
+  "permissions": [
+    "school.exams.manage",
+    "school.exams.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultExamWindowDays",
+      "type": "number",
+      "default": "7",
+      "description": "Default exam window length."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Exam"
+  ],
+  "operations": [
+    {
+      "name": "createExam",
+      "permission": "school.exams.manage",
+      "description": "Create a new exam period.",
+      "auditAction": "school.exam.created"
+    },
+    {
+      "name": "markExamGraded",
+      "permission": "school.exams.manage",
+      "description": "Mark an exam as fully graded.",
+      "auditAction": "school.exam.graded"
+    }
+  ]
+}

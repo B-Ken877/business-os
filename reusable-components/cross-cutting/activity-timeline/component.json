@@ -1,0 +1,47 @@
+{
+  "id": "activity-timeline",
+  "name": "Activity Timeline",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Audit-friendly operational event history for any entity.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "timeline.events.record",
+    "timeline.events.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxEventsPerEntity",
+      "type": "number",
+      "default": "10000",
+      "description": "Cap on events stored per entity; older events are archived."
+    },
+    {
+      "key": "summaryMaxLength",
+      "type": "number",
+      "default": "500",
+      "description": "Maximum characters for an event's summary field."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "TimelineEvent"
+  ],
+  "operations": [
+    {
+      "name": "recordEvent",
+      "permission": "timeline.events.record",
+      "description": "Record an event for an entity. Events are immutable once recorded.",
+      "auditAction": ""
+    },
+    {
+      "name": "listEventsForEntity",
+      "permission": "timeline.events.read",
+      "description": "List all events for an entity, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

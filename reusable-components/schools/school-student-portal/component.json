@@ -1,0 +1,43 @@
+{
+  "id": "school-student-portal",
+  "name": "School Student Portal",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Student-facing access to schedule, results, and communications.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment",
+    "school-grading",
+    "school-class-scheduling"
+  ],
+  "permissions": [
+    "school.portal.student.view"
+  ],
+  "configOptions": [
+    {
+      "key": "allowStudentMessageReply",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether students can reply to parent messages."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "StudentPortalSession"
+  ],
+  "operations": [
+    {
+      "name": "startSession",
+      "permission": "school.portal.student.view",
+      "description": "Start a portal session for a student. The studentId is taken from the calling context's user identity, NOT from the request body.",
+      "auditAction": "school.portal.session_started"
+    },
+    {
+      "name": "endSession",
+      "permission": "school.portal.student.view",
+      "description": "End a portal session.",
+      "auditAction": "school.portal.session_ended"
+    }
+  ]
+}

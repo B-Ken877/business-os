@@ -1,0 +1,51 @@
+{
+  "id": "church-donations",
+  "name": "Church Donations",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Tithes, offerings, pledge tracking, giving history, and donation summaries.",
+  "dependencies": [
+    "@business-os/shared",
+    "church-member-management",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "church.donations.record",
+    "church.donations.read",
+    "church.donations.read_member_history"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency."
+    },
+    {
+      "key": "requireFundDesignation",
+      "type": "boolean",
+      "default": "true",
+      "description": "Whether every donation must designate a fund (tithe, offering, building, etc.)."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Donation",
+    "Pledge"
+  ],
+  "operations": [
+    {
+      "name": "recordDonation",
+      "permission": "church.donations.record",
+      "description": "Record a new donation.",
+      "auditAction": "church.donation.recorded"
+    },
+    {
+      "name": "computeMemberGivingTotal",
+      "permission": "church.donations.read_member_history",
+      "description": "Compute a member's total giving over a date range. Requires the elevated 'read_member_history' permission because giving history is especially sensitive.",
+      "auditAction": "church.donation.member_history_accessed"
+    }
+  ]
+}

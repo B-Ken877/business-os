@@ -1,0 +1,42 @@
+{
+  "id": "church-announcements",
+  "name": "Church Announcements",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Public announcements, internal notices, and broadcast messages.",
+  "dependencies": [
+    "@business-os/shared",
+    "messaging-center"
+  ],
+  "permissions": [
+    "church.announcements.publish",
+    "church.announcements.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultExpiryDays",
+      "type": "number",
+      "default": "7",
+      "description": "Default days until an announcement expires."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Announcement"
+  ],
+  "operations": [
+    {
+      "name": "publishAnnouncement",
+      "permission": "church.announcements.publish",
+      "description": "Publish a new announcement.",
+      "auditAction": "church.announcement.published"
+    },
+    {
+      "name": "listActiveAnnouncements",
+      "permission": "church.announcements.read",
+      "description": "List all non-expired announcements for a given audience, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

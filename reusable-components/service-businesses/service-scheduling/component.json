@@ -1,0 +1,48 @@
+{
+  "id": "service-scheduling",
+  "name": "Service Scheduling",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Staff assignment, time availability, and calendar coordination.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "service.scheduling.manage",
+    "service.scheduling.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultWorkingStartHour",
+      "type": "number",
+      "default": "9",
+      "description": "Default working start hour."
+    },
+    {
+      "key": "defaultWorkingEndHour",
+      "type": "number",
+      "default": "17",
+      "description": "Default working end hour."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "StaffAvailability",
+    "TimeOff"
+  ],
+  "operations": [
+    {
+      "name": "setWorkingHours",
+      "permission": "service.scheduling.manage",
+      "description": "Set a staff member's working hours for a day.",
+      "auditAction": "service.scheduling.hours_set"
+    },
+    {
+      "name": "isAvailable",
+      "permission": "service.scheduling.read",
+      "description": "Check if a staff member is available at a given time (within working hours and not on time off).",
+      "auditAction": ""
+    }
+  ]
+}

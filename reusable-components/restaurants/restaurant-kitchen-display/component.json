@@ -1,0 +1,48 @@
+{
+  "id": "restaurant-kitchen-display",
+  "name": "Restaurant Kitchen Display",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Kitchen ticket workflows, prep status, order prioritization, and station routing.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-order-management"
+  ],
+  "permissions": [
+    "restaurant.kitchen.tickets.read",
+    "restaurant.kitchen.tickets.update"
+  ],
+  "configOptions": [
+    {
+      "key": "maxTicketsPerStation",
+      "type": "number",
+      "default": "50",
+      "description": "Cap on open tickets per station."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "KitchenTicket"
+  ],
+  "operations": [
+    {
+      "name": "createTicket",
+      "permission": "restaurant.kitchen.tickets.update",
+      "description": "Create a kitchen ticket from an order.",
+      "auditAction": "restaurant.kitchen.ticket_created"
+    },
+    {
+      "name": "markTicketReady",
+      "permission": "restaurant.kitchen.tickets.update",
+      "description": "Mark a kitchen ticket as ready for pickup.",
+      "auditAction": "restaurant.kitchen.ticket_ready"
+    },
+    {
+      "name": "listTicketsForStation",
+      "permission": "restaurant.kitchen.tickets.read",
+      "description": "List open tickets for a station, sorted by priority then placement time.",
+      "auditAction": ""
+    }
+  ]
+}

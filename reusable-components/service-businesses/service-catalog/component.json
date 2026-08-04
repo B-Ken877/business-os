@@ -1,0 +1,47 @@
+{
+  "id": "service-catalog",
+  "name": "Service Catalog",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "List of services, descriptions, pricing, and durations.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "service.catalog.manage",
+    "service.catalog.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency."
+    },
+    {
+      "key": "maxServicesPerTenant",
+      "type": "number",
+      "default": "1000",
+      "description": "Cap on services."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Service"
+  ],
+  "operations": [
+    {
+      "name": "createService",
+      "permission": "service.catalog.manage",
+      "description": "Create a new service.",
+      "auditAction": "service.catalog.created"
+    },
+    {
+      "name": "listActiveServices",
+      "permission": "service.catalog.read",
+      "description": "List all active services.",
+      "auditAction": ""
+    }
+  ]
+}

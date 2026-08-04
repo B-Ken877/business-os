@@ -1,0 +1,43 @@
+{
+  "id": "retail-barcode-scanning",
+  "name": "Retail Barcode Scanning",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Barcode lookup and scanning workflows.",
+  "dependencies": [
+    "@business-os/shared",
+    "retail-product-catalog"
+  ],
+  "permissions": [
+    "retail.barcodes.register",
+    "retail.barcodes.lookup",
+    "retail.barcodes.remove"
+  ],
+  "configOptions": [
+    {
+      "key": "allowUnknownBarcodeCreate",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether scanning an unknown barcode can trigger product creation."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Barcode"
+  ],
+  "operations": [
+    {
+      "name": "registerBarcode",
+      "permission": "retail.barcodes.register",
+      "description": "Register a barcode against a product. A barcode can be registered to at most one product per tenant.",
+      "auditAction": "retail.barcode.registered"
+    },
+    {
+      "name": "lookupBarcode",
+      "permission": "retail.barcodes.lookup",
+      "description": "Resolve a scanned barcode string to a product. Returns NOT_FOUND if the barcode is not registered.",
+      "auditAction": ""
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "retail-customer-management",
+  "name": "Retail Customer Management",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Customer records, purchase history, loyalty notes, and contact data.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "retail.customers.create",
+    "retail.customers.update",
+    "retail.customers.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxCustomersPerTenant",
+      "type": "number",
+      "default": "100000",
+      "description": "Cap on customer records."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Customer"
+  ],
+  "operations": [
+    {
+      "name": "createCustomer",
+      "permission": "retail.customers.create",
+      "description": "Create a new customer record.",
+      "auditAction": "retail.customer.created"
+    },
+    {
+      "name": "updateStatus",
+      "permission": "retail.customers.update",
+      "description": "Update a customer's status (active, vip, blacklisted).",
+      "auditAction": "retail.customer.status_updated"
+    },
+    {
+      "name": "addLoyaltyNote",
+      "permission": "retail.customers.update",
+      "description": "Append a loyalty note to a customer's record. Existing notes are preserved.",
+      "auditAction": "retail.customer.loyalty_note_added"
+    }
+  ]
+}

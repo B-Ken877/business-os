@@ -1,0 +1,62 @@
+{
+  "id": "reporting-dashboard",
+  "name": "Reporting Dashboard",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Configurable dashboards, summaries, and exportable reports.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "reporting.metrics.define",
+    "reporting.metrics.read",
+    "reporting.metrics.delete",
+    "reporting.dashboards.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "maxMetricsPerTenant",
+      "type": "number",
+      "default": "50",
+      "description": "Hard cap on the number of metrics a tenant can define."
+    },
+    {
+      "key": "defaultRefreshIntervalSeconds",
+      "type": "number",
+      "default": "300",
+      "description": "Default refresh interval (5 minutes)."
+    },
+    {
+      "key": "maxQueryWindowDays",
+      "type": "number",
+      "default": "365",
+      "description": "Maximum days a single query can span."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Metric",
+    "MetricValue"
+  ],
+  "operations": [
+    {
+      "name": "defineMetric",
+      "permission": "reporting.metrics.define",
+      "description": "Define a new metric for the tenant.",
+      "auditAction": "reporting.metric.defined"
+    },
+    {
+      "name": "recordMetricValue",
+      "permission": "reporting.metrics.read",
+      "description": "Record a computed value for a metric. Called by the platform's query runner after it computes the value.",
+      "auditAction": "reporting.metric.value_recorded"
+    },
+    {
+      "name": "getMetricSeries",
+      "permission": "reporting.metrics.read",
+      "description": "Fetch all recorded values for a metric in a given window.",
+      "auditAction": ""
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "clinic-medical-records",
+  "name": "Clinic Medical Records",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Consultation notes, history, clinical summaries, and records access.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management"
+  ],
+  "permissions": [
+    "clinic.records.create",
+    "clinic.records.read",
+    "clinic.records.update"
+  ],
+  "configOptions": [
+    {
+      "key": "maxNotesLengthChars",
+      "type": "number",
+      "default": "20000",
+      "description": "Max characters per consultation note."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "MedicalRecord"
+  ],
+  "operations": [
+    {
+      "name": "createRecord",
+      "permission": "clinic.records.create",
+      "description": "Create a new medical record entry.",
+      "auditAction": "clinic.record.created"
+    },
+    {
+      "name": "listRecordsForPatient",
+      "permission": "clinic.records.read",
+      "description": "List all medical records for a patient. Every list call is audited.",
+      "auditAction": "clinic.records.listed_for_patient"
+    }
+  ]
+}

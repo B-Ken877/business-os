@@ -1,0 +1,42 @@
+{
+  "id": "church-volunteers",
+  "name": "Church Volunteers",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Volunteer records, assignment tracking, and schedules.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "church.volunteers.manage",
+    "church.volunteers.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxAssignmentsPerVolunteer",
+      "type": "number",
+      "default": "5",
+      "description": "Max simultaneous active assignments per volunteer."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Volunteer",
+    "VolunteerAssignment"
+  ],
+  "operations": [
+    {
+      "name": "createVolunteer",
+      "permission": "church.volunteers.manage",
+      "description": "Create a volunteer record for a member.",
+      "auditAction": "church.volunteer.created"
+    },
+    {
+      "name": "assignVolunteer",
+      "permission": "church.volunteers.manage",
+      "description": "Assign a volunteer to an event or ministry. Enforces the max-assignments cap.",
+      "auditAction": "church.volunteer.assigned"
+    }
+  ]
+}

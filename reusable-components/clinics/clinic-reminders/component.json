@@ -1,0 +1,44 @@
+{
+  "id": "clinic-reminders",
+  "name": "Clinic Reminders",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Appointment reminders, medication reminders, and follow-up reminders.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management",
+    "notifications-center"
+  ],
+  "permissions": [
+    "clinic.reminders.schedule",
+    "clinic.reminders.read",
+    "clinic.reminders.cancel"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultReminderLeadMinutes",
+      "type": "number",
+      "default": "60",
+      "description": "Default minutes before the event to send a reminder."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Reminder"
+  ],
+  "operations": [
+    {
+      "name": "scheduleReminder",
+      "permission": "clinic.reminders.schedule",
+      "description": "Schedule a reminder for a patient.",
+      "auditAction": "clinic.reminder.scheduled"
+    },
+    {
+      "name": "cancelReminder",
+      "permission": "clinic.reminders.cancel",
+      "description": "Cancel a scheduled reminder.",
+      "auditAction": "clinic.reminder.cancelled"
+    }
+  ]
+}

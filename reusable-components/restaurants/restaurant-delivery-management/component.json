@@ -1,0 +1,43 @@
+{
+  "id": "restaurant-delivery-management",
+  "name": "Restaurant Delivery Management",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Delivery orders, addresses, driver assignment, and delivery status.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-order-management"
+  ],
+  "permissions": [
+    "restaurant.delivery.assign",
+    "restaurant.delivery.update",
+    "restaurant.delivery.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxActiveDeliveriesPerDriver",
+      "type": "number",
+      "default": "3",
+      "description": "Cap on simultaneous deliveries per driver."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Delivery"
+  ],
+  "operations": [
+    {
+      "name": "assignDriver",
+      "permission": "restaurant.delivery.assign",
+      "description": "Assign a driver to a delivery.",
+      "auditAction": "restaurant.delivery.driver_assigned"
+    },
+    {
+      "name": "confirmDelivered",
+      "permission": "restaurant.delivery.update",
+      "description": "Confirm a delivery was completed.",
+      "auditAction": "restaurant.delivery.delivered"
+    }
+  ]
+}

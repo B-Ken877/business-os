@@ -1,0 +1,44 @@
+{
+  "id": "school-grading",
+  "name": "School Grading",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Grades, assessments, report cards, and score history.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment"
+  ],
+  "permissions": [
+    "school.grades.record",
+    "school.grades.read",
+    "school.grades.manage_assessments"
+  ],
+  "configOptions": [
+    {
+      "key": "passingGradePct",
+      "type": "number",
+      "default": "60",
+      "description": "Passing grade percentage."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Grade",
+    "Assessment"
+  ],
+  "operations": [
+    {
+      "name": "recordGrade",
+      "permission": "school.grades.record",
+      "description": "Record a student's grade for an assessment. Idempotent on (studentId, assessmentId).",
+      "auditAction": "school.grade.recorded"
+    },
+    {
+      "name": "computeStudentAverage",
+      "permission": "school.grades.read",
+      "description": "Compute a student's overall average across all assessments.",
+      "auditAction": ""
+    }
+  ]
+}

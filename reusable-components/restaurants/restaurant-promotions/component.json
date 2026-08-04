@@ -1,0 +1,42 @@
+{
+  "id": "restaurant-promotions",
+  "name": "Restaurant Promotions",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Coupons, happy hour rules, combo offers, and promotions.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "restaurant.promotions.manage",
+    "restaurant.promotions.read",
+    "restaurant.promotions.redeem"
+  ],
+  "configOptions": [
+    {
+      "key": "maxActiveCoupons",
+      "type": "number",
+      "default": "50",
+      "description": "Cap on active coupons."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Coupon"
+  ],
+  "operations": [
+    {
+      "name": "createCoupon",
+      "permission": "restaurant.promotions.manage",
+      "description": "Create a new coupon.",
+      "auditAction": "restaurant.coupon.created"
+    },
+    {
+      "name": "redeemCoupon",
+      "permission": "restaurant.promotions.redeem",
+      "description": "Redeem a coupon. Increments the redemption count and enforces the max.",
+      "auditAction": "restaurant.coupon.redeemed"
+    }
+  ]
+}

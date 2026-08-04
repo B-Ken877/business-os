@@ -1,0 +1,44 @@
+{
+  "id": "school-certificates",
+  "name": "School Certificates",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Certificate generation, completion status, and printable outputs.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment",
+    "document-management"
+  ],
+  "permissions": [
+    "school.certificates.issue",
+    "school.certificates.read",
+    "school.certificates.revoke"
+  ],
+  "configOptions": [
+    {
+      "key": "certificateTemplateKey",
+      "type": "string",
+      "default": "\"default_graduation\"",
+      "description": "Default template key."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Certificate"
+  ],
+  "operations": [
+    {
+      "name": "issueCertificate",
+      "permission": "school.certificates.issue",
+      "description": "Issue a new certificate to a student.",
+      "auditAction": "school.certificate.issued"
+    },
+    {
+      "name": "revokeCertificate",
+      "permission": "school.certificates.revoke",
+      "description": "Revoke a certificate (e.g. due to academic dishonesty).",
+      "auditAction": "school.certificate.revoked"
+    }
+  ]
+}

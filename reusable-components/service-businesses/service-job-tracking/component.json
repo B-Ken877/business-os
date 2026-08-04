@@ -1,0 +1,50 @@
+{
+  "id": "service-job-tracking",
+  "name": "Service Job Tracking",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Work orders, task progress, and service completion tracking.",
+  "dependencies": [
+    "@business-os/shared",
+    "service-booking"
+  ],
+  "permissions": [
+    "service.jobs.manage",
+    "service.jobs.read",
+    "service.jobs.update_task"
+  ],
+  "configOptions": [
+    {
+      "key": "maxTasksPerJob",
+      "type": "number",
+      "default": "50",
+      "description": "Cap on tasks per job."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Job",
+    "JobTask"
+  ],
+  "operations": [
+    {
+      "name": "createJob",
+      "permission": "service.jobs.manage",
+      "description": "Create a new job.",
+      "auditAction": "service.job.created"
+    },
+    {
+      "name": "addTask",
+      "permission": "service.jobs.manage",
+      "description": "Add a task to a job.",
+      "auditAction": "service.job.task_added"
+    },
+    {
+      "name": "completeTask",
+      "permission": "service.jobs.update_task",
+      "description": "Mark a task as completed. If all tasks are complete, the job is auto-completed.",
+      "auditAction": "service.job.task_completed"
+    }
+  ]
+}

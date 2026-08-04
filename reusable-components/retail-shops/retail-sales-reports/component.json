@@ -1,0 +1,37 @@
+{
+  "id": "retail-sales-reports",
+  "name": "Retail Sales Reports",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Daily sales summaries, product performance, profit reporting, and exports.",
+  "dependencies": [
+    "@business-os/shared",
+    "retail-point-of-sale",
+    "reporting-dashboard"
+  ],
+  "permissions": [
+    "retail.reports.read"
+  ],
+  "configOptions": [
+    {
+      "key": "topN",
+      "type": "number",
+      "default": "10",
+      "description": "Default N for top-products reports."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "SaleRecord",
+    "DailySalesSummary"
+  ],
+  "operations": [
+    {
+      "name": "computeDailySummary",
+      "permission": "retail.reports.read",
+      "description": "Compute the daily sales summary for a given date, based on the sales recorded by the POS.",
+      "auditAction": ""
+    }
+  ]
+}

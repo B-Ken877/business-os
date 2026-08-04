@@ -1,0 +1,52 @@
+{
+  "id": "search-and-filter",
+  "name": "Search & Filter",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Reusable list search, filtering, sorting, and pagination behaviour.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "search.query"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultPageSize",
+      "type": "number",
+      "default": "20",
+      "description": "Default items per page."
+    },
+    {
+      "key": "maxPageSize",
+      "type": "number",
+      "default": "100",
+      "description": "Maximum items per page a caller can request."
+    },
+    {
+      "key": "maxFilterClauses",
+      "type": "number",
+      "default": "10",
+      "description": "Maximum number of filter clauses per query."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "SavedQuery"
+  ],
+  "operations": [
+    {
+      "name": "runQuery",
+      "permission": "search.query",
+      "description": "Run a search/filter/sort/paginate query against a list of items supplied by the caller.",
+      "auditAction": ""
+    },
+    {
+      "name": "saveQuery",
+      "permission": "search.query",
+      "description": "Persist a query for later re-use by the same user.",
+      "auditAction": "search.query.saved"
+    }
+  ]
+}

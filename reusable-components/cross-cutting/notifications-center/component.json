@@ -1,0 +1,55 @@
+{
+  "id": "notifications-center",
+  "name": "Notifications Center",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "In-app notifications with channel-agnostic delivery abstraction.",
+  "dependencies": [
+    "@business-os/shared",
+    "reusable-components/cross-cutting/messaging-center"
+  ],
+  "permissions": [
+    "notifications.push",
+    "notifications.read",
+    "notifications.dismiss"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultExpiryHours",
+      "type": "number",
+      "default": "168",
+      "description": "Hours after which a notification expires (default 7 days)."
+    },
+    {
+      "key": "maxPerUser",
+      "type": "number",
+      "default": "1000",
+      "description": "Cap on notifications stored per user; oldest are pruned."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Notification"
+  ],
+  "operations": [
+    {
+      "name": "pushNotification",
+      "permission": "notifications.push",
+      "description": "Push a notification to a user's inbox.",
+      "auditAction": "notification.pushed"
+    },
+    {
+      "name": "listUnreadForCurrentUser",
+      "permission": "notifications.read",
+      "description": "List all unread, non-expired, non-dismissed notifications for the current user.",
+      "auditAction": ""
+    },
+    {
+      "name": "markRead",
+      "permission": "notifications.read",
+      "description": "Mark a notification as read.",
+      "auditAction": "notification.read"
+    }
+  ]
+}

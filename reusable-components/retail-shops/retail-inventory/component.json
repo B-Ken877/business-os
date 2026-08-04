@@ -1,0 +1,63 @@
+{
+  "id": "retail-inventory",
+  "name": "Retail Inventory",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Stock tracking, quantities, low-stock alerts, stock adjustments, and movement history.",
+  "dependencies": [
+    "@business-os/shared",
+    "retail-product-catalog"
+  ],
+  "permissions": [
+    "retail.inventory.read",
+    "retail.inventory.adjust",
+    "retail.inventory.restock",
+    "retail.inventory.thresholds.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultLowStockThreshold",
+      "type": "number",
+      "default": "5",
+      "description": "Default threshold below which a low-stock alert fires."
+    },
+    {
+      "key": "allowNegativeStock",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether stock can go below zero (forbidden by default)."
+    },
+    {
+      "key": "maxMovementsPerProduct",
+      "type": "number",
+      "default": "10000",
+      "description": "Cap on movement history per product."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "StockLevel",
+    "StockMovement"
+  ],
+  "operations": [
+    {
+      "name": "adjustStock",
+      "permission": "retail.inventory.adjust",
+      "description": "Adjust stock by a delta (positive or negative). Records a movement.",
+      "auditAction": "retail.stock.adjusted"
+    },
+    {
+      "name": "setLowStockThreshold",
+      "permission": "retail.inventory.thresholds.manage",
+      "description": "Set the low-stock threshold for a product.",
+      "auditAction": "retail.threshold.updated"
+    },
+    {
+      "name": "listMovementsForProduct",
+      "permission": "retail.inventory.read",
+      "description": "List all stock movements for a product, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "clinic-staff-management",
+  "name": "Clinic Staff Management",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Doctors, nurses, assistants, roles, and schedules.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "clinic.staff.manage",
+    "clinic.staff.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxStaffPerTenant",
+      "type": "number",
+      "default": "500",
+      "description": "Cap on staff records."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Staff"
+  ],
+  "operations": [
+    {
+      "name": "createStaff",
+      "permission": "clinic.staff.manage",
+      "description": "Create a new staff record.",
+      "auditAction": "clinic.staff.created"
+    },
+    {
+      "name": "listDoctors",
+      "permission": "clinic.staff.read",
+      "description": "List all staff with the 'doctor' role.",
+      "auditAction": ""
+    }
+  ]
+}

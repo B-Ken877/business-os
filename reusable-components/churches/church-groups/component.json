@@ -1,0 +1,49 @@
+{
+  "id": "church-groups",
+  "name": "Church Groups",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Small groups, ministry groups, leaders, and group participation.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "church.groups.manage",
+    "church.groups.read",
+    "church.groups.join"
+  ],
+  "configOptions": [
+    {
+      "key": "maxGroupsPerTenant",
+      "type": "number",
+      "default": "100",
+      "description": "Cap on groups."
+    },
+    {
+      "key": "defaultMaxMembers",
+      "type": "number",
+      "default": "30",
+      "description": "Default max members per group."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Group",
+    "GroupMembership"
+  ],
+  "operations": [
+    {
+      "name": "createGroup",
+      "permission": "church.groups.manage",
+      "description": "Create a new group.",
+      "auditAction": "church.group.created"
+    },
+    {
+      "name": "joinGroup",
+      "permission": "church.groups.join",
+      "description": "Add a member to a group. Enforces max members.",
+      "auditAction": "church.group.joined"
+    }
+  ]
+}

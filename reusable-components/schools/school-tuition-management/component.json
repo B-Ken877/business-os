@@ -1,0 +1,51 @@
+{
+  "id": "school-tuition-management",
+  "name": "School Tuition Management",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Tuition plans, payments, balances, due dates, and reminders.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "school.tuition.manage",
+    "school.tuition.read",
+    "school.tuition.record_payment"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultPlanInstallments",
+      "type": "number",
+      "default": "10",
+      "description": "Default number of installments."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "TuitionPlan",
+    "TuitionPayment"
+  ],
+  "operations": [
+    {
+      "name": "createTuitionPlan",
+      "permission": "school.tuition.manage",
+      "description": "Create a tuition plan for a student.",
+      "auditAction": "school.tuition.plan_created"
+    },
+    {
+      "name": "recordTuitionPayment",
+      "permission": "school.tuition.record_payment",
+      "description": "Record a tuition payment against a plan.",
+      "auditAction": "school.tuition.payment_recorded"
+    },
+    {
+      "name": "computeOutstandingBalance",
+      "permission": "school.tuition.read",
+      "description": "Compute the outstanding balance for a plan.",
+      "auditAction": ""
+    }
+  ]
+}

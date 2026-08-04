@@ -1,0 +1,55 @@
+{
+  "id": "restaurant-menu",
+  "name": "Restaurant Menu",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Menus, categories, items, modifiers, pricing, availability, and images.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "restaurant.menu.items.manage",
+    "restaurant.menu.items.read",
+    "restaurant.menu.availability.manage",
+    "restaurant.menu.categories.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency for new menu items."
+    },
+    {
+      "key": "maxItemsPerTenant",
+      "type": "number",
+      "default": "1000",
+      "description": "Cap on menu items."
+    },
+    {
+      "key": "maxModifiersPerItem",
+      "type": "number",
+      "default": "20",
+      "description": "Cap on modifiers per item."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "MenuItem"
+  ],
+  "operations": [
+    {
+      "name": "createMenuItem",
+      "permission": "restaurant.menu.items.manage",
+      "description": "Create a new menu item.",
+      "auditAction": "restaurant.menu.item_created"
+    },
+    {
+      "name": "setAvailability",
+      "permission": "restaurant.menu.availability.manage",
+      "description": "Mark a menu item as available or 86'd.",
+      "auditAction": "restaurant.menu.availability_changed"
+    }
+  ]
+}

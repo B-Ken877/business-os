@@ -1,0 +1,43 @@
+{
+  "id": "clinic-prescriptions",
+  "name": "Clinic Prescriptions",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Prescription creation, medication tracking, and refill notes.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-medical-records"
+  ],
+  "permissions": [
+    "clinic.prescriptions.create",
+    "clinic.prescriptions.read",
+    "clinic.prescriptions.refill"
+  ],
+  "configOptions": [
+    {
+      "key": "maxRefillsAllowed",
+      "type": "number",
+      "default": "3",
+      "description": "Default max refills per prescription."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Prescription"
+  ],
+  "operations": [
+    {
+      "name": "createPrescription",
+      "permission": "clinic.prescriptions.create",
+      "description": "Create a new prescription.",
+      "auditAction": "clinic.prescription.created"
+    },
+    {
+      "name": "refillPrescription",
+      "permission": "clinic.prescriptions.refill",
+      "description": "Refill a prescription. Decrements refillsRemaining; deactivates when 0.",
+      "auditAction": "clinic.prescription.refilled"
+    }
+  ]
+}

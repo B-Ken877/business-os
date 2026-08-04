@@ -1,0 +1,49 @@
+{
+  "id": "clinic-consent",
+  "name": "Clinic Consent",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Consent capture, acknowledgements, and sensitive-data handling.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management"
+  ],
+  "permissions": [
+    "clinic.consent.manage",
+    "clinic.consent.read",
+    "clinic.consent.check"
+  ],
+  "configOptions": [
+    {
+      "key": "requireExplicitRevokeReason",
+      "type": "boolean",
+      "default": "true",
+      "description": "Whether revocation requires a reason."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "ConsentRecord"
+  ],
+  "operations": [
+    {
+      "name": "grantConsent",
+      "permission": "clinic.consent.manage",
+      "description": "Grant consent for a specific purpose. Idempotent: re-granting active consent is a no-op.",
+      "auditAction": "clinic.consent.granted"
+    },
+    {
+      "name": "revokeConsent",
+      "permission": "clinic.consent.manage",
+      "description": "Revoke consent for a specific purpose.",
+      "auditAction": "clinic.consent.revoked"
+    },
+    {
+      "name": "hasActiveConsent",
+      "permission": "clinic.consent.check",
+      "description": "Check whether a patient has active consent for a purpose. Audited as a check.",
+      "auditAction": "clinic.consent.checked"
+    }
+  ]
+}

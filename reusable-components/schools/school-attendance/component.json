@@ -1,0 +1,42 @@
+{
+  "id": "school-attendance",
+  "name": "School Attendance",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Attendance recording, summaries, and late tracking.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment"
+  ],
+  "permissions": [
+    "school.attendance.record",
+    "school.attendance.read"
+  ],
+  "configOptions": [
+    {
+      "key": "chronicAbsenceThresholdPct",
+      "type": "number",
+      "default": "20",
+      "description": "Absent percentage above which a student is flagged chronic."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "AttendanceRecord"
+  ],
+  "operations": [
+    {
+      "name": "recordAttendance",
+      "permission": "school.attendance.record",
+      "description": "Record a student's attendance for a session. Idempotent on (studentId, sessionDate).",
+      "auditAction": "school.attendance.recorded"
+    },
+    {
+      "name": "computeAttendanceRate",
+      "permission": "school.attendance.read",
+      "description": "Compute a student's attendance rate over a date range. Returns absent percentage.",
+      "auditAction": ""
+    }
+  ]
+}

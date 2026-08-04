@@ -1,0 +1,44 @@
+{
+  "id": "clinic-lab-orders",
+  "name": "Clinic Lab Orders",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Requested tests, status tracking, and result references.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management",
+    "document-management"
+  ],
+  "permissions": [
+    "clinic.lab.order",
+    "clinic.lab.read",
+    "clinic.lab.record_result"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultResultTurnaroundHours",
+      "type": "number",
+      "default": "24",
+      "description": "Default expected turnaround."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "LabOrder"
+  ],
+  "operations": [
+    {
+      "name": "orderLabTest",
+      "permission": "clinic.lab.order",
+      "description": "Order a lab test for a patient.",
+      "auditAction": "clinic.lab.ordered"
+    },
+    {
+      "name": "recordResult",
+      "permission": "clinic.lab.record_result",
+      "description": "Record a result document for a lab order. Marks the order as completed.",
+      "auditAction": "clinic.lab.result_recorded"
+    }
+  ]
+}

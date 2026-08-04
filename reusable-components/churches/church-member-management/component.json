@@ -1,0 +1,54 @@
+{
+  "id": "church-member-management",
+  "name": "Church Member Management",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Member profiles, family grouping, contact records, and membership status.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "church.members.manage",
+    "church.members.read",
+    "church.members.update_own"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultDirectoryVisibility",
+      "type": "string",
+      "default": "\"visible\"",
+      "description": "Default visibility of a new member in the directory."
+    },
+    {
+      "key": "maxMembersPerTenant",
+      "type": "number",
+      "default": "50000",
+      "description": "Cap on member records."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Member"
+  ],
+  "operations": [
+    {
+      "name": "createMember",
+      "permission": "church.members.manage",
+      "description": "Create a new member record.",
+      "auditAction": "church.member.created"
+    },
+    {
+      "name": "listVisibleMembers",
+      "permission": "church.members.read",
+      "description": "List all members whose directory visibility is 'visible' and whose status is 'active'.",
+      "auditAction": ""
+    },
+    {
+      "name": "updateOwnVisibility",
+      "permission": "church.members.update_own",
+      "description": "A member updates their own directory visibility. The caller's userId must match the member's id (enforced by the orchestrator).",
+      "auditAction": "church.member.visibility_updated"
+    }
+  ]
+}

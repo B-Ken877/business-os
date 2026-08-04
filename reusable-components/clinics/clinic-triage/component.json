@@ -1,0 +1,42 @@
+{
+  "id": "clinic-triage",
+  "name": "Clinic Triage",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Visit reason, symptom capture, urgency classification, and intake workflow.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management"
+  ],
+  "permissions": [
+    "clinic.triage.intake",
+    "clinic.triage.read"
+  ],
+  "configOptions": [
+    {
+      "key": "emergencyAutoNotify",
+      "type": "boolean",
+      "default": "true",
+      "description": "Whether emergency triage automatically triggers a notification."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "TriageEntry"
+  ],
+  "operations": [
+    {
+      "name": "recordTriage",
+      "permission": "clinic.triage.intake",
+      "description": "Record a triage entry at patient intake.",
+      "auditAction": "clinic.triage.recorded"
+    },
+    {
+      "name": "listEmergencyTriage",
+      "permission": "clinic.triage.read",
+      "description": "List all triage entries classified as emergency, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

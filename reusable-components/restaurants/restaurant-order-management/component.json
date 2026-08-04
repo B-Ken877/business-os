@@ -1,0 +1,56 @@
+{
+  "id": "restaurant-order-management",
+  "name": "Restaurant Order Management",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Customer orders, order status, notes, special instructions, and fulfillment flow.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-menu"
+  ],
+  "permissions": [
+    "restaurant.orders.create",
+    "restaurant.orders.update_status",
+    "restaurant.orders.read",
+    "restaurant.orders.cancel"
+  ],
+  "configOptions": [
+    {
+      "key": "maxItemsPerOrder",
+      "type": "number",
+      "default": "50",
+      "description": "Cap on line items per order."
+    },
+    {
+      "key": "defaultFulfillmentType",
+      "type": "string",
+      "default": "\"dine_in\"",
+      "description": "Default fulfillment type."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Order"
+  ],
+  "operations": [
+    {
+      "name": "createOrder",
+      "permission": "restaurant.orders.create",
+      "description": "Place a new order.",
+      "auditAction": "restaurant.order.placed"
+    },
+    {
+      "name": "advanceOrderStatus",
+      "permission": "restaurant.orders.update_status",
+      "description": "Advance the order to the next status. Enforces the state machine.",
+      "auditAction": "restaurant.order.status_advanced"
+    },
+    {
+      "name": "cancelOrder",
+      "permission": "restaurant.orders.cancel",
+      "description": "Cancel an order. Only allowed before it's served.",
+      "auditAction": "restaurant.order.cancelled"
+    }
+  ]
+}

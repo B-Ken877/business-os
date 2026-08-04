@@ -1,0 +1,49 @@
+{
+  "id": "retail-promotions",
+  "name": "Retail Promotions",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Discounts, bundles, promo rules, and seasonal campaigns.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "retail.promotions.create",
+    "retail.promotions.update",
+    "retail.promotions.activate",
+    "retail.promotions.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxActivePromotionsPerTenant",
+      "type": "number",
+      "default": "20",
+      "description": "Cap on simultaneously active promotions."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Promotion"
+  ],
+  "operations": [
+    {
+      "name": "createPromotion",
+      "permission": "retail.promotions.create",
+      "description": "Create a new promotion in draft status.",
+      "auditAction": "retail.promotion.created"
+    },
+    {
+      "name": "activatePromotion",
+      "permission": "retail.promotions.activate",
+      "description": "Activate a draft promotion. Enforces the active-promotion cap.",
+      "auditAction": "retail.promotion.activated"
+    },
+    {
+      "name": "listActivePromotions",
+      "permission": "retail.promotions.read",
+      "description": "List all currently active promotions (status=active and within date range).",
+      "auditAction": ""
+    }
+  ]
+}

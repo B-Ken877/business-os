@@ -1,0 +1,134 @@
+{
+  "$schema": "https://business-os.local/schemas/library-manifest.json",
+  "name": "business-os-reusable-components",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "description": "Industry-specific reusable business capabilities for Business OS.",
+  "testSummary": {
+    "testFiles": 196,
+    "tests": 1044,
+    "status": "passing",
+    "runCommand": "npm test"
+  },
+  "industries": [
+    {
+      "id": "retail-shops",
+      "name": "Retail Shops",
+      "componentCount": 9
+    },
+    {
+      "id": "restaurants",
+      "name": "Restaurants",
+      "componentCount": 10
+    },
+    {
+      "id": "schools",
+      "name": "Schools",
+      "componentCount": 10
+    },
+    {
+      "id": "churches",
+      "name": "Churches",
+      "componentCount": 8
+    },
+    {
+      "id": "clinics",
+      "name": "Clinics",
+      "componentCount": 10
+    },
+    {
+      "id": "service-businesses",
+      "name": "Service Businesses",
+      "componentCount": 8
+    },
+    {
+      "id": "cross-cutting",
+      "name": "Cross-cutting",
+      "componentCount": 10
+    }
+  ],
+  "sharedPrimitives": {
+    "folder": "_shared",
+    "status": "pending promotion to core/",
+    "exports": [
+      "TenantContext", "TenantId", "UserId", "assertSameTenant", "isSameTenant",
+      "PermissionChecker", "InMemoryPermissionChecker", "DenyAllPermissionChecker", "PermissionDeniedError",
+      "Result", "ok", "err", "isOk", "isErr", "ErrorCode",
+      "AuditEntry", "AuditSink", "InMemoryAuditSink", "createAuditEntry",
+      "EntityId", "asEntityId", "generateId"
+    ]
+  },
+  "components": [
+    {"id": "retail-product-catalog", "industry": "retail-shops", "sensitive": false},
+    {"id": "retail-inventory", "industry": "retail-shops", "sensitive": false},
+    {"id": "retail-point-of-sale", "industry": "retail-shops", "sensitive": true},
+    {"id": "retail-supplier-management", "industry": "retail-shops", "sensitive": true},
+    {"id": "retail-stock-alerts", "industry": "retail-shops", "sensitive": false},
+    {"id": "retail-customer-management", "industry": "retail-shops", "sensitive": true},
+    {"id": "retail-barcode-scanning", "industry": "retail-shops", "sensitive": false},
+    {"id": "retail-sales-reports", "industry": "retail-shops", "sensitive": false},
+    {"id": "retail-promotions", "industry": "retail-shops", "sensitive": false},
+
+    {"id": "restaurant-menu", "industry": "restaurants", "sensitive": false},
+    {"id": "restaurant-order-management", "industry": "restaurants", "sensitive": true},
+    {"id": "restaurant-table-management", "industry": "restaurants", "sensitive": false},
+    {"id": "restaurant-kitchen-display", "industry": "restaurants", "sensitive": false},
+    {"id": "restaurant-reservations", "industry": "restaurants", "sensitive": true},
+    {"id": "restaurant-delivery-management", "industry": "restaurants", "sensitive": true},
+    {"id": "restaurant-ingredient-tracking", "industry": "restaurants", "sensitive": false},
+    {"id": "restaurant-billing", "industry": "restaurants", "sensitive": true},
+    {"id": "restaurant-shift-management", "industry": "restaurants", "sensitive": false},
+    {"id": "restaurant-promotions", "industry": "restaurants", "sensitive": false},
+
+    {"id": "school-student-enrollment", "industry": "schools", "sensitive": true},
+    {"id": "school-attendance", "industry": "schools", "sensitive": true},
+    {"id": "school-tuition-management", "industry": "schools", "sensitive": true},
+    {"id": "school-grading", "industry": "schools", "sensitive": true},
+    {"id": "school-class-scheduling", "industry": "schools", "sensitive": false},
+    {"id": "school-parent-communication", "industry": "schools", "sensitive": true},
+    {"id": "school-exams", "industry": "schools", "sensitive": false},
+    {"id": "school-certificates", "industry": "schools", "sensitive": false},
+    {"id": "school-teacher-management", "industry": "schools", "sensitive": true},
+    {"id": "school-student-portal", "industry": "schools", "sensitive": true},
+
+    {"id": "church-member-management", "industry": "churches", "sensitive": true},
+    {"id": "church-donations", "industry": "churches", "sensitive": true},
+    {"id": "church-events", "industry": "churches", "sensitive": true},
+    {"id": "church-groups", "industry": "churches", "sensitive": true},
+    {"id": "church-attendance", "industry": "churches", "sensitive": true},
+    {"id": "church-announcements", "industry": "churches", "sensitive": false},
+    {"id": "church-volunteers", "industry": "churches", "sensitive": true},
+    {"id": "church-sermons", "industry": "churches", "sensitive": false},
+
+    {"id": "clinic-patient-management", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-appointments", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-medical-records", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-prescriptions", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-triage", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-billing", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-lab-orders", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-consent", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-reminders", "industry": "clinics", "sensitive": true},
+    {"id": "clinic-staff-management", "industry": "clinics", "sensitive": true},
+
+    {"id": "service-catalog", "industry": "service-businesses", "sensitive": false},
+    {"id": "service-quotes", "industry": "service-businesses", "sensitive": true},
+    {"id": "service-booking", "industry": "service-businesses", "sensitive": true},
+    {"id": "service-job-tracking", "industry": "service-businesses", "sensitive": false},
+    {"id": "service-invoicing", "industry": "service-businesses", "sensitive": true},
+    {"id": "service-customer-management", "industry": "service-businesses", "sensitive": true},
+    {"id": "service-feedback", "industry": "service-businesses", "sensitive": false},
+    {"id": "service-scheduling", "industry": "service-businesses", "sensitive": true},
+
+    {"id": "messaging-center", "industry": "cross-cutting", "sensitive": true},
+    {"id": "document-management", "industry": "cross-cutting", "sensitive": true},
+    {"id": "reporting-dashboard", "industry": "cross-cutting", "sensitive": false},
+    {"id": "notes-and-comments", "industry": "cross-cutting", "sensitive": true},
+    {"id": "activity-timeline", "industry": "cross-cutting", "sensitive": false},
+    {"id": "search-and-filter", "industry": "cross-cutting", "sensitive": false},
+    {"id": "notifications-center", "industry": "cross-cutting", "sensitive": false},
+    {"id": "forms-and-intake", "industry": "cross-cutting", "sensitive": true},
+    {"id": "payments-or-collections", "industry": "cross-cutting", "sensitive": true},
+    {"id": "roles-and-permissions-ui", "industry": "cross-cutting", "sensitive": false, "needsFrontend": true}
+  ]
+}

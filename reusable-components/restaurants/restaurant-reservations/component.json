@@ -1,0 +1,50 @@
+{
+  "id": "restaurant-reservations",
+  "name": "Restaurant Reservations",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Reservations, booking times, customer details, table assignment, and reminders.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-table-management"
+  ],
+  "permissions": [
+    "restaurant.reservations.create",
+    "restaurant.reservations.read",
+    "restaurant.reservations.cancel",
+    "restaurant.reservations.checkin"
+  ],
+  "configOptions": [
+    {
+      "key": "maxReservationsPerDay",
+      "type": "number",
+      "default": "200",
+      "description": "Cap on reservations per day."
+    },
+    {
+      "key": "reminderLeadMinutes",
+      "type": "number",
+      "default": "60",
+      "description": "Minutes before reservation to send a reminder."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Reservation"
+  ],
+  "operations": [
+    {
+      "name": "createReservation",
+      "permission": "restaurant.reservations.create",
+      "description": "Create a new reservation.",
+      "auditAction": "restaurant.reservation.created"
+    },
+    {
+      "name": "cancelReservation",
+      "permission": "restaurant.reservations.cancel",
+      "description": "Cancel a reservation.",
+      "auditAction": "restaurant.reservation.cancelled"
+    }
+  ]
+}

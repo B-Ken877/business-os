@@ -1,0 +1,52 @@
+{
+  "id": "service-booking",
+  "name": "Service Booking",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Appointment/service booking, time slots, and status tracking.",
+  "dependencies": [
+    "@business-os/shared",
+    "service-catalog",
+    "service-customer-management",
+    "service-scheduling"
+  ],
+  "permissions": [
+    "service.bookings.create",
+    "service.bookings.read",
+    "service.bookings.update_status",
+    "service.bookings.cancel"
+  ],
+  "configOptions": [
+    {
+      "key": "slotGranularityMinutes",
+      "type": "number",
+      "default": "15",
+      "description": "Slot granularity for conflict detection."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Booking"
+  ],
+  "operations": [
+    {
+      "name": "createBooking",
+      "permission": "service.bookings.create",
+      "description": "Create a new booking. Detects staff scheduling conflicts.",
+      "auditAction": "service.booking.created"
+    },
+    {
+      "name": "markCompleted",
+      "permission": "service.bookings.update_status",
+      "description": "Mark a booking as completed.",
+      "auditAction": "service.booking.completed"
+    },
+    {
+      "name": "markNoShow",
+      "permission": "service.bookings.update_status",
+      "description": "Mark a booking as a no-show.",
+      "auditAction": "service.booking.no_show"
+    }
+  ]
+}

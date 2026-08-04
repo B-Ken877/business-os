@@ -1,0 +1,67 @@
+{
+  "id": "document-management",
+  "name": "Document Management",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "File uploads, document organization, attachments, and metadata.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "documents.upload",
+    "documents.read",
+    "documents.delete",
+    "documents.manageQuota"
+  ],
+  "configOptions": [
+    {
+      "key": "maxFileSizeBytes",
+      "type": "number",
+      "default": "10485760",
+      "description": "Hard cap on a single file's size (10 MB default)."
+    },
+    {
+      "key": "allowedMimeTypes",
+      "type": "ReadonlyArray<string>",
+      "default": "[\"application/pdf\",\"image/png\",\"image/jpeg\"]",
+      "description": "MIME types accepted by default."
+    },
+    {
+      "key": "retentionDaysAfterDelete",
+      "type": "number",
+      "default": "30",
+      "description": "Days a soft-deleted document is kept before hard purge."
+    },
+    {
+      "key": "tenantStorageQuotaBytes",
+      "type": "number",
+      "default": "1073741824",
+      "description": "Per-tenant storage cap (1 GB default)."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Document"
+  ],
+  "operations": [
+    {
+      "name": "uploadDocument",
+      "permission": "documents.upload",
+      "description": "Register an uploaded file. The actual bytes are assumed to be already stored by the platform's storage adapter; this operation records the metadata.",
+      "auditAction": "document.uploaded"
+    },
+    {
+      "name": "listDocumentsForEntity",
+      "permission": "documents.read",
+      "description": "List all non-deleted documents attached to a specific entity.",
+      "auditAction": ""
+    },
+    {
+      "name": "softDeleteDocument",
+      "permission": "documents.delete",
+      "description": "Mark a document as soft-deleted. The bytes are retained until the retention window expires.",
+      "auditAction": "document.soft_deleted"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "church-attendance",
+  "name": "Church Attendance",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Attendance for services, events, and programs.",
+  "dependencies": [
+    "@business-os/shared",
+    "church-member-management"
+  ],
+  "permissions": [
+    "church.attendance.record",
+    "church.attendance.read"
+  ],
+  "configOptions": [
+    {
+      "key": "declineThresholdWeeks",
+      "type": "number",
+      "default": "3",
+      "description": "Weeks of absence before flagging as declining."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "ServiceAttendance"
+  ],
+  "operations": [
+    {
+      "name": "recordAttendance",
+      "permission": "church.attendance.record",
+      "description": "Record a member's attendance for a service. Idempotent on (memberId, serviceDate).",
+      "auditAction": "church.attendance.recorded"
+    },
+    {
+      "name": "isDeclining",
+      "permission": "church.attendance.read",
+      "description": "Check if a member has missed the last N consecutive services.",
+      "auditAction": ""
+    }
+  ]
+}

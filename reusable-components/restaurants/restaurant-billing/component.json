@@ -1,0 +1,50 @@
+{
+  "id": "restaurant-billing",
+  "name": "Restaurant Billing",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Bills, service fees, discounts, payment status, and receipt generation.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-order-management",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "restaurant.billing.generate",
+    "restaurant.billing.read",
+    "restaurant.billing.record_payment"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultServiceChargeBps",
+      "type": "number",
+      "default": "0",
+      "description": "Default service charge in basis points (0 = none)."
+    },
+    {
+      "key": "defaultTaxBps",
+      "type": "number",
+      "default": "1000",
+      "description": "Default tax rate in basis points (10%)."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Bill"
+  ],
+  "operations": [
+    {
+      "name": "generateBill",
+      "permission": "restaurant.billing.generate",
+      "description": "Generate a bill from one or more orders.",
+      "auditAction": "restaurant.bill.generated"
+    },
+    {
+      "name": "markPaid",
+      "permission": "restaurant.billing.record_payment",
+      "description": "Mark a bill as paid after payment is recorded.",
+      "auditAction": "restaurant.bill.paid"
+    }
+  ]
+}

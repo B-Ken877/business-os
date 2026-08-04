@@ -1,0 +1,49 @@
+{
+  "id": "retail-stock-alerts",
+  "name": "Retail Stock Alerts",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Notifications when stock is low or items are out of stock.",
+  "dependencies": [
+    "@business-os/shared",
+    "retail-inventory",
+    "notifications-center"
+  ],
+  "permissions": [
+    "retail.stockalerts.evaluate",
+    "retail.stockalerts.read"
+  ],
+  "configOptions": [
+    {
+      "key": "suppressDuplicateHours",
+      "type": "number",
+      "default": "6",
+      "description": "Hours to suppress a duplicate alert for the same product."
+    },
+    {
+      "key": "alertRecipientRole",
+      "type": "string",
+      "default": "\"manager\"",
+      "description": "Role whose members receive alerts."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "StockAlert"
+  ],
+  "operations": [
+    {
+      "name": "evaluateStockLevel",
+      "permission": "retail.stockalerts.evaluate",
+      "description": "Evaluate a single product's stock level and emit an alert if it has crossed a threshold. Suppresses duplicates within the configured window.",
+      "auditAction": "retail.stockalert.emitted"
+    },
+    {
+      "name": "listActiveAlerts",
+      "permission": "retail.stockalerts.read",
+      "description": "List all alerts emitted in the last 24 hours, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

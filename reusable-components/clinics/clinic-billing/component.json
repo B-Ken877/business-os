@@ -1,0 +1,50 @@
+{
+  "id": "clinic-billing",
+  "name": "Clinic Billing",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Consultation fees, balances, payment records, and invoices.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "clinic.billing.generate",
+    "clinic.billing.read",
+    "clinic.billing.record_payment"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultConsultationFeeCents",
+      "type": "number",
+      "default": "5000",
+      "description": "Default consultation fee."
+    },
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Invoice"
+  ],
+  "operations": [
+    {
+      "name": "generateInvoice",
+      "permission": "clinic.billing.generate",
+      "description": "Generate an invoice for a patient visit.",
+      "auditAction": "clinic.invoice.generated"
+    },
+    {
+      "name": "markInvoicePaid",
+      "permission": "clinic.billing.record_payment",
+      "description": "Mark an invoice as paid.",
+      "auditAction": "clinic.invoice.paid"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "forms-and-intake",
+  "name": "Forms & Intake",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Reusable, configurable intake forms with validation and submission handling.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "forms.define",
+    "forms.publish",
+    "forms.submit",
+    "forms.readSubmissions"
+  ],
+  "configOptions": [
+    {
+      "key": "maxFieldsPerForm",
+      "type": "number",
+      "default": "50",
+      "description": "Cap on fields per form."
+    },
+    {
+      "key": "maxSubmissionsPerForm",
+      "type": "number",
+      "default": "10000",
+      "description": "Cap on submissions stored per form."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "FormDefinition",
+    "FormSubmission"
+  ],
+  "operations": [
+    {
+      "name": "defineForm",
+      "permission": "forms.define",
+      "description": "Define a new form.",
+      "auditAction": "form.defined"
+    },
+    {
+      "name": "publishForm",
+      "permission": "forms.publish",
+      "description": "Publish a draft form so it can accept submissions.",
+      "auditAction": "form.published"
+    },
+    {
+      "name": "submitForm",
+      "permission": "forms.submit",
+      "description": "Submit values to a published form.",
+      "auditAction": "form.submitted"
+    }
+  ]
+}

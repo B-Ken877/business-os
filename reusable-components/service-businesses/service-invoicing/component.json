@@ -1,0 +1,50 @@
+{
+  "id": "service-invoicing",
+  "name": "Service Invoicing",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Invoicing, payments, balances, and receipts.",
+  "dependencies": [
+    "@business-os/shared",
+    "service-booking",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "service.invoicing.generate",
+    "service.invoicing.read",
+    "service.invoicing.record_payment"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency."
+    },
+    {
+      "key": "defaultTaxBps",
+      "type": "number",
+      "default": "1000",
+      "description": "Default tax rate."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Invoice"
+  ],
+  "operations": [
+    {
+      "name": "generateInvoice",
+      "permission": "service.invoicing.generate",
+      "description": "Generate an invoice.",
+      "auditAction": "service.invoice.generated"
+    },
+    {
+      "name": "markPaid",
+      "permission": "service.invoicing.record_payment",
+      "description": "Mark an invoice as paid.",
+      "auditAction": "service.invoice.paid"
+    }
+  ]
+}

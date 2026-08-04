@@ -1,0 +1,42 @@
+{
+  "id": "church-sermons",
+  "name": "Church Sermons",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Sermon archive, sermon metadata, media references, and series tracking.",
+  "dependencies": [
+    "@business-os/shared",
+    "document-management"
+  ],
+  "permissions": [
+    "church.sermons.manage",
+    "church.sermons.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxSermonsPerTenant",
+      "type": "number",
+      "default": "10000",
+      "description": "Cap on sermon records."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Sermon"
+  ],
+  "operations": [
+    {
+      "name": "recordSermon",
+      "permission": "church.sermons.manage",
+      "description": "Record a new sermon.",
+      "auditAction": "church.sermon.recorded"
+    },
+    {
+      "name": "listSermonsBySpeaker",
+      "permission": "church.sermons.read",
+      "description": "List all sermons by a given speaker, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

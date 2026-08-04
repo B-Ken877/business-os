@@ -1,0 +1,61 @@
+{
+  "id": "payments-or-collections",
+  "name": "Payments & Collections",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Payment recording, collection tracking, balances, and payment status.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "payments.record",
+    "payments.read",
+    "payments.refund",
+    "payments.reconcile"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency code (ISO 4217)."
+    },
+    {
+      "key": "supportedMethods",
+      "type": "ReadonlyArray<string>",
+      "default": "[\"cash\",\"card\",\"mobile_money\",\"bank_transfer\"]",
+      "description": "Payment methods accepted."
+    },
+    {
+      "key": "requireReferenceForNonCash",
+      "type": "boolean",
+      "default": "true",
+      "description": "Whether non-cash payments must include a provider transaction reference."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Payment"
+  ],
+  "operations": [
+    {
+      "name": "recordPayment",
+      "permission": "payments.record",
+      "description": "Record a payment received.",
+      "auditAction": "payment.recorded"
+    },
+    {
+      "name": "refundPayment",
+      "permission": "payments.refund",
+      "description": "Mark a previously recorded payment as refunded. The actual refund is initiated through the payment provider; this records the result.",
+      "auditAction": "payment.refunded"
+    },
+    {
+      "name": "listPaymentsForInvoice",
+      "permission": "payments.read",
+      "description": "List all non-refunded payments attached to an invoice.",
+      "auditAction": ""
+    }
+  ]
+}

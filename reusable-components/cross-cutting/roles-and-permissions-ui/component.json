@@ -1,0 +1,54 @@
+{
+  "id": "roles-and-permissions-ui",
+  "name": "Roles & Permissions UI",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Reusable permission-aware UI patterns that plug into the platform authorization model.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "roles.read",
+    "roles.manage",
+    "permissions.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultRoleOnInvite",
+      "type": "string",
+      "default": "\"member\"",
+      "description": "Default role assigned when a new user is invited."
+    },
+    {
+      "key": "allowOwnerRoleEditing",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether the owner role can be edited through this UI (default: no)."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "RoleDefinition"
+  ],
+  "operations": [
+    {
+      "name": "defineRole",
+      "permission": "roles.manage",
+      "description": "Define a new role for the tenant.",
+      "auditAction": "role.defined"
+    },
+    {
+      "name": "listRoles",
+      "permission": "roles.read",
+      "description": "List all roles defined in the tenant.",
+      "auditAction": ""
+    },
+    {
+      "name": "listPermissionsForRole",
+      "permission": "permissions.read",
+      "description": "Return the parsed permission list for a role.",
+      "auditAction": ""
+    }
+  ]
+}

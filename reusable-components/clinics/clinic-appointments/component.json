@@ -1,0 +1,51 @@
+{
+  "id": "clinic-appointments",
+  "name": "Clinic Appointments",
+  "industry": "clinics",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Appointment scheduling, rescheduling, cancellations, and reminders.",
+  "dependencies": [
+    "@business-os/shared",
+    "clinic-patient-management",
+    "clinic-staff-management"
+  ],
+  "permissions": [
+    "clinic.appointments.schedule",
+    "clinic.appointments.read",
+    "clinic.appointments.cancel",
+    "clinic.appointments.reschedule"
+  ],
+  "configOptions": [
+    {
+      "key": "slotDurationMinutes",
+      "type": "number",
+      "default": "30",
+      "description": "Default appointment slot length."
+    },
+    {
+      "key": "reminderLeadMinutes",
+      "type": "number",
+      "default": "60",
+      "description": "Minutes before appointment to send a reminder."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Appointment"
+  ],
+  "operations": [
+    {
+      "name": "scheduleAppointment",
+      "permission": "clinic.appointments.schedule",
+      "description": "Schedule a new appointment. Detects doctor double-booking.",
+      "auditAction": "clinic.appointment.scheduled"
+    },
+    {
+      "name": "cancelAppointment",
+      "permission": "clinic.appointments.cancel",
+      "description": "Cancel an appointment.",
+      "auditAction": "clinic.appointment.cancelled"
+    }
+  ]
+}

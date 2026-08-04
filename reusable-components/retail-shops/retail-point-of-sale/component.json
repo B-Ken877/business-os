@@ -1,0 +1,57 @@
+{
+  "id": "retail-point-of-sale",
+  "name": "Retail Point of Sale",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Checkout flow, cart handling, totals, discounts, payment recording, and receipts.",
+  "dependencies": [
+    "@business-os/shared",
+    "retail-product-catalog",
+    "retail-inventory",
+    "payments-or-collections"
+  ],
+  "permissions": [
+    "retail.pos.checkout",
+    "retail.pos.refund",
+    "retail.pos.read"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultTaxRateBps",
+      "type": "number",
+      "default": "1000",
+      "description": "Default tax rate in basis points (1000 = 10%)."
+    },
+    {
+      "key": "currency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "POS currency."
+    },
+    {
+      "key": "allowNegativeCartTotal",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether a cart can have a negative total after discounts (forbidden by default)."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Sale"
+  ],
+  "operations": [
+    {
+      "name": "checkout",
+      "permission": "retail.pos.checkout",
+      "description": "Process a cart: compute totals, record payment, decrement stock, and create a Sale record.",
+      "auditAction": "retail.sale.completed"
+    },
+    {
+      "name": "getSale",
+      "permission": "retail.pos.read",
+      "description": "Retrieve a sale by id.",
+      "auditAction": ""
+    }
+  ]
+}

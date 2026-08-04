@@ -1,0 +1,42 @@
+{
+  "id": "school-student-enrollment",
+  "name": "School Student Enrollment",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Student onboarding, admissions, student profiles, and enrollment status.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "school.students.create",
+    "school.students.update",
+    "school.students.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxStudentsPerTenant",
+      "type": "number",
+      "default": "10000",
+      "description": "Cap on student records."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Student"
+  ],
+  "operations": [
+    {
+      "name": "enrollStudent",
+      "permission": "school.students.create",
+      "description": "Enroll a new student.",
+      "auditAction": "school.student.enrolled"
+    },
+    {
+      "name": "updateEnrollmentStatus",
+      "permission": "school.students.update",
+      "description": "Update a student's enrollment status.",
+      "auditAction": "school.student.status_updated"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "restaurant-ingredient-tracking",
+  "name": "Restaurant Ingredient Tracking",
+  "industry": "restaurants",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Ingredient stock, depletion tracking, and recipe-linked inventory reduction.",
+  "dependencies": [
+    "@business-os/shared",
+    "restaurant-menu"
+  ],
+  "permissions": [
+    "restaurant.ingredients.manage",
+    "restaurant.ingredients.read",
+    "restaurant.recipes.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultLowIngredientThreshold",
+      "type": "number",
+      "default": "2",
+      "description": "Default low-ingredient threshold."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Ingredient",
+    "Recipe"
+  ],
+  "operations": [
+    {
+      "name": "addIngredientStock",
+      "permission": "restaurant.ingredients.manage",
+      "description": "Add quantity to an ingredient (restock).",
+      "auditAction": "restaurant.ingredient.restocked"
+    },
+    {
+      "name": "depleteForMenuItem",
+      "permission": "restaurant.ingredients.manage",
+      "description": "Deplete ingredient quantities based on a recipe, when a menu item is sold. Quantities are in the smallest unit.",
+      "auditAction": "restaurant.ingredient.depleted"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "school-teacher-management",
+  "name": "School Teacher Management",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Teacher records, assignments, workload, and contact details.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "school.teachers.manage",
+    "school.teachers.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxWorkloadHoursPerWeek",
+      "type": "number",
+      "default": "30",
+      "description": "Maximum teaching hours per week."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Teacher"
+  ],
+  "operations": [
+    {
+      "name": "createTeacher",
+      "permission": "school.teachers.manage",
+      "description": "Create a new teacher record.",
+      "auditAction": "school.teacher.created"
+    },
+    {
+      "name": "listTeachers",
+      "permission": "school.teachers.read",
+      "description": "List all teachers.",
+      "auditAction": ""
+    }
+  ]
+}

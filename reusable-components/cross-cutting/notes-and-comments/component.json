@@ -1,0 +1,55 @@
+{
+  "id": "notes-and-comments",
+  "name": "Notes & Comments",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Internal notes, customer notes, and collaboration comments attached to any entity.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "notes.create",
+    "notes.read",
+    "notes.update",
+    "notes.delete"
+  ],
+  "configOptions": [
+    {
+      "key": "maxNoteLength",
+      "type": "number",
+      "default": "5000",
+      "description": "Maximum characters per note body."
+    },
+    {
+      "key": "maxThreadDepth",
+      "type": "number",
+      "default": "5",
+      "description": "Maximum nesting depth for threaded replies."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Note"
+  ],
+  "operations": [
+    {
+      "name": "createNote",
+      "permission": "notes.create",
+      "description": "Create a new note attached to an entity.",
+      "auditAction": "note.created"
+    },
+    {
+      "name": "listNotesForEntity",
+      "permission": "notes.read",
+      "description": "List all non-deleted notes attached to an entity.",
+      "auditAction": ""
+    },
+    {
+      "name": "deleteNote",
+      "permission": "notes.delete",
+      "description": "Soft-delete a note. Replies are not auto-deleted; they reference a deleted parent.",
+      "auditAction": "note.deleted"
+    }
+  ]
+}

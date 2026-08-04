@@ -1,0 +1,44 @@
+{
+  "id": "school-parent-communication",
+  "name": "School Parent Communication",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Parent contact management, messages, announcements, and alerts.",
+  "dependencies": [
+    "@business-os/shared",
+    "school-student-enrollment",
+    "messaging-center"
+  ],
+  "permissions": [
+    "school.parent_comm.send",
+    "school.parent_comm.read",
+    "school.parent_comm.broadcast"
+  ],
+  "configOptions": [
+    {
+      "key": "broadcastRateLimitPerHour",
+      "type": "number",
+      "default": "10",
+      "description": "Cap on broadcasts per hour."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "ParentMessage"
+  ],
+  "operations": [
+    {
+      "name": "sendParentMessage",
+      "permission": "school.parent_comm.send",
+      "description": "Send a message to a student's parent.",
+      "auditAction": "school.parent_message.sent"
+    },
+    {
+      "name": "listMessagesForStudent",
+      "permission": "school.parent_comm.read",
+      "description": "List all messages for a student's parent, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "school-class-scheduling",
+  "name": "School Class Scheduling",
+  "industry": "schools",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Timetable, classes, rooms, teacher assignments, and schedule conflict detection.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "school.scheduling.manage",
+    "school.scheduling.read"
+  ],
+  "configOptions": [
+    {
+      "key": "sessionDurationMinutes",
+      "type": "number",
+      "default": "45",
+      "description": "Default session duration."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "ClassSession"
+  ],
+  "operations": [
+    {
+      "name": "scheduleSession",
+      "permission": "school.scheduling.manage",
+      "description": "Schedule a class session. Detects teacher and room conflicts.",
+      "auditAction": "school.session.scheduled"
+    },
+    {
+      "name": "listSessionsForTeacher",
+      "permission": "school.scheduling.read",
+      "description": "List all sessions assigned to a teacher.",
+      "auditAction": ""
+    }
+  ]
+}

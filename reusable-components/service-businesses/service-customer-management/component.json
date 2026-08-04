@@ -1,0 +1,42 @@
+{
+  "id": "service-customer-management",
+  "name": "Service Customer Management",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Customer records, service history, and contact details.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "service.customers.create",
+    "service.customers.update",
+    "service.customers.read"
+  ],
+  "configOptions": [
+    {
+      "key": "maxCustomersPerTenant",
+      "type": "number",
+      "default": "50000",
+      "description": "Cap on customer records."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Customer"
+  ],
+  "operations": [
+    {
+      "name": "createCustomer",
+      "permission": "service.customers.create",
+      "description": "Create a new customer.",
+      "auditAction": "service.customer.created"
+    },
+    {
+      "name": "setPreferences",
+      "permission": "service.customers.update",
+      "description": "Set the customer's preferences JSON.",
+      "auditAction": "service.customer.preferences_set"
+    }
+  ]
+}

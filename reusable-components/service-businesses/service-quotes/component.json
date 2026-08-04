@@ -1,0 +1,44 @@
+{
+  "id": "service-quotes",
+  "name": "Service Quotes",
+  "industry": "service-businesses",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Estimates, quote generation, and quote approval flow.",
+  "dependencies": [
+    "@business-os/shared",
+    "service-catalog"
+  ],
+  "permissions": [
+    "service.quotes.create",
+    "service.quotes.read",
+    "service.quotes.approve",
+    "service.quotes.reject"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultExpiryDays",
+      "type": "number",
+      "default": "30",
+      "description": "Default quote validity days."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Quote"
+  ],
+  "operations": [
+    {
+      "name": "createQuote",
+      "permission": "service.quotes.create",
+      "description": "Create a new quote in draft status.",
+      "auditAction": "service.quote.created"
+    },
+    {
+      "name": "approveQuote",
+      "permission": "service.quotes.approve",
+      "description": "Approve a quote. Only drafts can be approved.",
+      "auditAction": "service.quote.approved"
+    }
+  ]
+}

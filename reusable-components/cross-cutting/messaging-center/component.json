@@ -1,0 +1,67 @@
+{
+  "id": "messaging-center",
+  "name": "Messaging Center",
+  "industry": "cross-cutting",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Business notifications, reminders, and internal messaging across channels.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "messaging.messages.send",
+    "messaging.broadcasts.send",
+    "messaging.messages.read",
+    "messaging.templates.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultChannel",
+      "type": "string",
+      "default": "\"in_app\"",
+      "description": "Channel used when the caller does not specify one."
+    },
+    {
+      "key": "maxBroadcastRecipients",
+      "type": "number",
+      "default": "500",
+      "description": "Hard cap on recipients per broadcast."
+    },
+    {
+      "key": "rateLimitPerMinute",
+      "type": "number",
+      "default": "60",
+      "description": "Max messages per tenant per minute."
+    },
+    {
+      "key": "retryFailedDeliveries",
+      "type": "boolean",
+      "default": "true",
+      "description": "Whether to retry failed deliveries up to the channel's limit."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Message"
+  ],
+  "operations": [
+    {
+      "name": "sendMessage",
+      "permission": "messaging.messages.send",
+      "description": "Send a message to a single recipient through a channel.",
+      "auditAction": "messaging.message.sent"
+    },
+    {
+      "name": "markDelivered",
+      "permission": "messaging.messages.read",
+      "description": "Mark a queued or sent message as delivered. Called by the channel adapter on delivery confirmation.",
+      "auditAction": "messaging.message.delivered"
+    },
+    {
+      "name": "listMessages",
+      "permission": "messaging.messages.read",
+      "description": "List all messages for the current tenant, newest first.",
+      "auditAction": ""
+    }
+  ]
+}

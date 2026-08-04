@@ -1,0 +1,63 @@
+{
+  "id": "retail-product-catalog",
+  "name": "Retail Product Catalog",
+  "industry": "retail-shops",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Manage products, categories, pricing, photos, descriptions, and availability.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "retail.products.create",
+    "retail.products.update",
+    "retail.products.archive",
+    "retail.products.read",
+    "retail.categories.manage"
+  ],
+  "configOptions": [
+    {
+      "key": "maxProductsPerTenant",
+      "type": "number",
+      "default": "50000",
+      "description": "Hard cap on products per tenant."
+    },
+    {
+      "key": "maxCategoriesPerTenant",
+      "type": "number",
+      "default": "200",
+      "description": "Hard cap on categories per tenant."
+    },
+    {
+      "key": "defaultCurrency",
+      "type": "string",
+      "default": "\"HTG\"",
+      "description": "Default currency for new product prices."
+    }
+  ],
+  "sensitive": false,
+  "entityTypes": [
+    "Category",
+    "Product"
+  ],
+  "operations": [
+    {
+      "name": "createProduct",
+      "permission": "retail.products.create",
+      "description": "Create a new product.",
+      "auditAction": "retail.product.created"
+    },
+    {
+      "name": "updatePrice",
+      "permission": "retail.products.update",
+      "description": "Update a product's price. Records the previous price in audit.",
+      "auditAction": "retail.product.price_updated"
+    },
+    {
+      "name": "archiveProduct",
+      "permission": "retail.products.archive",
+      "description": "Archive a product so it no longer appears in the active catalog.",
+      "auditAction": "retail.product.archived"
+    }
+  ]
+}

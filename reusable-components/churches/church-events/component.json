@@ -1,0 +1,49 @@
+{
+  "id": "church-events",
+  "name": "Church Events",
+  "industry": "churches",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "oneLiner": "Service events, programs, event schedules, and registrations.",
+  "dependencies": [
+    "@business-os/shared"
+  ],
+  "permissions": [
+    "church.events.manage",
+    "church.events.read",
+    "church.events.register"
+  ],
+  "configOptions": [
+    {
+      "key": "defaultCapacity",
+      "type": "number",
+      "default": "200",
+      "description": "Default event capacity."
+    },
+    {
+      "key": "allowOverRegistration",
+      "type": "boolean",
+      "default": "false",
+      "description": "Whether to allow registration beyond capacity."
+    }
+  ],
+  "sensitive": true,
+  "entityTypes": [
+    "Event",
+    "EventRegistration"
+  ],
+  "operations": [
+    {
+      "name": "createEvent",
+      "permission": "church.events.manage",
+      "description": "Create a new event.",
+      "auditAction": "church.event.created"
+    },
+    {
+      "name": "registerForMember",
+      "permission": "church.events.register",
+      "description": "Register a member for an event. Enforces capacity.",
+      "auditAction": "church.event.registered"
+    }
+  ]
+}
