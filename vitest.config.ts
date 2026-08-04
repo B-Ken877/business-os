@@ -4,12 +4,16 @@ import { resolve } from "node:path";
 export default defineConfig({
   resolve: {
     alias: {
-      "@business-os/shared": resolve(__dirname, "reusable-components/_shared/index.ts"),
+      "@business-os/shared": resolve(__dirname, "core/platform/index.ts"),
+      "@business-os/core": resolve(__dirname, "core/index.ts"),
     },
   },
   test: {
     environment: "node",
-    include: ["reusable-components/**/tests/**/*.test.ts"],
+    include: [
+      "core/**/tests/**/*.test.ts",
+      "reusable-components/**/tests/**/*.test.ts",
+    ],
     globals: false,
     reporters: ["default"],
     coverage: {

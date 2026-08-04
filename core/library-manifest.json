@@ -1,0 +1,79 @@
+{
+  "$schema": "https://business-os.local/schemas/core-manifest.json",
+  "name": "business-os-core",
+  "version": "0.1.0",
+  "stability": "partial",
+  "description": "Layer 1 — universal foundation shared by every business.",
+  "testSummary": {
+    "coreTestFiles": 7,
+    "coreTests": 77,
+    "totalTestFiles": 202,
+    "totalTests": 1121,
+    "status": "passing",
+    "runCommand": "npm test"
+  },
+  "modules": [
+    {
+      "id": "platform",
+      "name": "Platform Primitives",
+      "stability": "stable",
+      "promotedFrom": "reusable-components/_shared/",
+      "exports": [
+        "TenantContext", "TenantId", "UserId", "assertSameTenant", "isSameTenant", "TenantIsolationError",
+        "PermissionChecker", "InMemoryPermissionChecker", "DenyAllPermissionChecker", "PermissionDeniedError",
+        "Result", "ok", "err", "isOk", "isErr", "ErrorCode",
+        "AuditEntry", "AuditSink", "InMemoryAuditSink", "createAuditEntry",
+        "EntityId", "asEntityId", "generateId"
+      ]
+    },
+    {
+      "id": "identity",
+      "name": "Identity",
+      "stability": "stable",
+      "features": ["registerUser", "loginUser", "verifySession", "logoutSession", "changePassword", "revokeAllSessions"],
+      "security": {
+        "passwordHashing": "scrypt (N=16384, r=8, p=1)",
+        "sessionTokens": "256-bit opaque, server-side revocable",
+        "sessionLifetime": "7 days absolute, 30 min idle",
+        "enumerationProtection": "login returns generic 'invalid credentials' for unknown email + wrong password"
+      }
+    },
+    {
+      "id": "organizations",
+      "name": "Organizations (Tenants)",
+      "stability": "stable",
+      "features": ["createOrganization", "inviteMember", "acceptInvitation", "revokeMembership", "listOrganizationsForUser", "resolveTenantBySlug"],
+      "lastOwnerProtection": true
+    },
+    {
+      "id": "authorization",
+      "name": "Authorization (RBAC)",
+      "stability": "stable",
+      "features": ["seedSystemRoles", "defineRole", "grantRole", "revokeRole", "listRoles", "listMyGrants", "StorePermissionChecker"],
+      "systemRoles": ["owner", "administrator", "member", "viewer"],
+      "wildcards": ["*.* (matches everything)", "<resource>.* (matches any action on a resource)"]
+    },
+    {
+      "id": "audit-log",
+      "name": "Audit Log",
+      "stability": "stable",
+      "features": ["PersistentAuditSink", "queryAuditLog", "countAuditEntries", "recordAuditEntry"],
+      "immutability": "no update or delete operations on the store interface",
+      "retentionDays": 2555,
+      "retentionNote": "7 years — conservative default for medical data per security-rules.md §5"
+    },
+    {
+      "id": "http",
+      "name": "HTTP Contract",
+      "stability": "types-only",
+      "note": "RouteContract, HttpRequest, HttpResponse types. The actual server comes in a future increment."
+    }
+  ],
+  "plannedModules": [
+    { "id": "http", "name": "HTTP Server", "priority": "next" },
+    { "id": "notifications", "name": "Notifications (Email/SMS/WhatsApp)", "priority": "next" },
+    { "id": "settings", "name": "Settings (platform + per-tenant)", "priority": "next" },
+    { "id": "file-storage", "name": "File Storage Adapter", "priority": "later" },
+    { "id": "billing", "name": "Platform SaaS Billing", "priority": "later" }
+  ]
+}

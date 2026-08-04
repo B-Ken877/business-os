@@ -1,74 +1,16 @@
 /**
- * Public barrel for the shared primitives. Components import from here using
- * the `@business-os/shared` alias configured in tsconfig.json and vitest.
+ * BACKWARDS-COMPATIBILITY SHIM.
  *
- * Example:
+ * The shared primitives have been promoted to `core/platform/`. This file
+ * re-exports them so that any code still importing from
+ * `reusable-components/_shared/` continues to work during the transition.
  *
- *   import {
- *     type TenantContext,
- *     type PermissionChecker,
- *     ok,
- *     err,
- *     ErrorCode,
- *   } from "@business-os/shared";
+ * New code should import from `@business-os/shared` (which points at
+ * `core/platform/index.ts`) or `@business-os/core` (which points at
+ * `core/index.ts`).
+ *
+ * This shim will be removed once all consumers have migrated. Tracked as
+ * a follow-up issue.
  */
 
-export type {
-  TenantId,
-  UserId,
-  TenantContext,
-} from "./tenant";
-
-export {
-  asTenantId,
-  asUserId,
-  createTenantContext,
-  assertSameTenant,
-  isSameTenant,
-  TenantIsolationError,
-} from "./tenant";
-
-export type {
-  Permission,
-  Role,
-  PermissionChecker,
-} from "./permissions";
-
-export {
-  asPermission,
-  PermissionDeniedError,
-  InMemoryPermissionChecker,
-  DenyAllPermissionChecker,
-} from "./permissions";
-
-export type {
-  Result,
-  ResultError,
-} from "./result";
-
-export {
-  ok,
-  err,
-  tryAsResult,
-  isOk,
-  isErr,
-} from "./result";
-
-export type {
-  AuditEntry,
-  AuditSink,
-} from "./audit";
-
-export {
-  createAuditEntry,
-  InMemoryAuditSink,
-} from "./audit";
-
-export type { EntityId } from "./ids";
-export {
-  asEntityId,
-  generateId,
-} from "./ids";
-
-export { ErrorCode } from "./errors";
-export type { ErrorCode as ErrorCodeType } from "./errors";
+export * from "../../core/platform/index";

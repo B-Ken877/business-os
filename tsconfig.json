@@ -15,11 +15,14 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@business-os/shared": ["./reusable-components/_shared/index.ts"],
-      "@business-os/shared/*": ["./reusable-components/_shared/*"]
+      "@business-os/shared": ["./core/platform/index.ts"],
+      "@business-os/shared/*": ["./core/platform/*"],
+      "@business-os/core": ["./core/index.ts"],
+      "@business-os/core/*": ["./core/*"]
     }
   },
   "include": [
+    "core/**/*.ts",
     "reusable-components/**/*.ts",
     "vitest.config.ts"
   ],
