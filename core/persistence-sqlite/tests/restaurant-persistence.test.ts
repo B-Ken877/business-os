@@ -15,7 +15,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { serve } from "@hono/node-server";
 import type { ServerType } from "@hono/node-server";
-import { openDatabase, createStores, createRestaurantStores } from "@business-os/core/persistence-sqlite";
+import { openDatabase, createStores, createRestaurantsStores } from "@business-os/core/persistence-sqlite";
 import { createApp } from "@business-os/core/http/server";
 import type { DatabaseType } from "@business-os/core/persistence-sqlite";
 
@@ -50,7 +50,7 @@ function startServer(port: number, database: DatabaseType): ServerType {
     authorization: stores.authorization,
     auditLog: stores.auditLog,
   };
-  const persistentStores = { ...createRestaurantStores(database) };
+  const persistentStores = { ...createRestaurantsStores(database) };
   const app = createApp(deps, persistentStores);
   return serve({ fetch: app.fetch, port });
 }

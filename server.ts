@@ -10,7 +10,7 @@
  * No external setup required — the database file is created on first run.
  */
 
-import { openDatabase, createStores, createRestaurantStores } from "./core/persistence-sqlite";
+import { openDatabase, createStores, createAllComponentStores } from "./core/persistence-sqlite";
 import { createApp } from "./core/http/server";
 import { serve } from "@hono/node-server";
 
@@ -28,11 +28,8 @@ async function main() {
     auditLog: stores.auditLog,
   };
 
-  // Inject SQLite stores for verticals that have persistence adapters.
-  // Currently: restaurants (10 components). Other verticals use in-memory.
-  const persistentStores = {
-    ...createRestaurantStores(db),
-  };
+  // Inject SQLite stores for ALL verticals — all 65 components persist.
+  const persistentStores = createAllComponentStores(db);
 
   const app = createApp(deps, persistentStores);
 
